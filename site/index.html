@@ -109,9 +109,14 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":101646464,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":101643920,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
+const GAME_PACK_URL = "index.pck?v=0a068c5fdaf7a85e9c3029b22be3b414c49d667589ebc2cb1308e4aa3f540523";
+GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 const engine = new Engine(GODOT_CONFIG);
+const preloadGameFile = engine.preloadFile.bind(engine);
+engine.preloadFile = (file, path) => preloadGameFile(
+    file === "index.pck" ? GAME_PACK_URL : file, path);
 
 (function () {
 	const statusOverlay = document.getElementById('status');
