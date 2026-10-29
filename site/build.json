@@ -1,7 +1,9 @@
 {
-  "source_commit": "788e0644ff4bf19e1f180708ffe9bc14f66e693d",
-  "source_ci_run": null,
+  "source_commit": "abc30e709f2e9809274d10117845ade192ac6658",
+  "source_ci_run": 40969986997,
   "source_ci_result": "bypassed_by_user",
+  "source_ci_status_at_publish": "in_progress",
   "build_origin": "local_checked_export",
+  "local_validation": "full gate including Blender, 630 Godot tests, six seeded bot/snapshot scenarios and Web export",
   "game": "Catiators"
 }
