@@ -1,6 +1,7 @@
 {
-  "source_commit": "49b2713cee32834dde1baa54734a669d602ba923",
-  "source_ci_run": 40819109927,
-  "source_ci_result": "success",
+  "source_commit": "50dec755a36ad893b386a0646a017ca08371b9b9",
+  "source_ci_run": null,
+  "source_ci_result": "bypassed_by_user",
+  "build_origin": "local_checked_export",
   "game": "Catiators"
 }
