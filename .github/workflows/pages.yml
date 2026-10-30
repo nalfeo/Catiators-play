@@ -29,12 +29,27 @@ jobs:
                       'index.audio.worklet.js', 'index.audio.position.worklet.js'}
           assert set(manifest['files']) == expected
           assert manifest['thread_support'] is False and manifest['mode'] == 'release'
+          # GitHub rejects Git blobs over 100 MiB. Rebuild a large pack from
+          # exactly two bounded parts, then verify the original artifact hash.
+          pack = site / 'index.pck'
+          parts = [site / 'index.pck.part0', site / 'index.pck.part1']
+          if not pack.exists():
+              assert all(part.is_file() and not part.is_symlink() for part in parts)
+              with pack.open('wb') as output:
+                  for part in parts:
+                      with part.open('rb') as source:
+                          while chunk := source.read(1024 * 1024):
+                              output.write(chunk)
+          else:
+              assert not any(part.exists() for part in parts)
           for name, record in manifest['files'].items():
               path = site / name
               assert path.is_file() and not path.is_symlink(), name
               payload = path.read_bytes()
               assert len(payload) == record['bytes'] > 0, name
               assert hashlib.sha256(payload).hexdigest() == record['sha256'], name
+          for part in parts:
+              part.unlink(missing_ok=True)
           print('Checked export hashes match all seven game files.')
           PY
       - name: Upload only the checked game

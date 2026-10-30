@@ -16,16 +16,16 @@
       "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
     },
     "index.html": {
-      "bytes": 5909,
-      "sha256": "3fe6111b1498ba9a2598adf80b66f2d91335cde4831a70cc493f8d2bd755424b"
+      "bytes": 5686,
+      "sha256": "67ade70d85f9c65bc1831ce5016bb718008d4a41c08868a38efb192ea6ee0a80"
     },
     "index.js": {
       "bytes": 279815,
       "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
     },
     "index.pck": {
-      "bytes": 102264352,
-      "sha256": "0c35d492850afddfc3574abeaa1a88f4a5305ab005100ee4b0027b37a32411eb"
+      "bytes": 141181280,
+      "sha256": "f108967896d610574138b56db0b42f79bd30c36d1b10a6bfc97d78e7867c1a92"
     },
     "index.png": {
       "bytes": 2524062,
