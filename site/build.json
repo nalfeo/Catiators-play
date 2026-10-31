@@ -1,7 +1,17 @@
 {
-  "source_commit": "3170e8420ff085a60b9b215c9464223c1ea50941",
-  "source_ci_run": 41133404899,
-  "source_ci_result": "success",
-  "build_origin": "hosted_linux_candidate",
-  "game": "Catiators"
+  "game": "Catiators",
+  "source_commit": "8ba44bc80c9ed3520c2302b1c86e4e2dce6cc64f",
+  "source_ci_run": null,
+  "source_ci_result": "not_run",
+  "build_origin": "local_windows",
+  "built_at": "2026-10-31T11:49:05.455560+00:00",
+  "export_validation": "passed",
+  "local_browser_smoke": "passed_title_difficulty_selection_practice_and_keyboard_pause",
+  "local_source_validation": {
+    "implementation_commit": "42c3b2754ab940da6389a798afd9f1b0db60b800",
+    "python_tests": 354,
+    "godot_tests": 735,
+    "seeded_smoke_cases": 6,
+    "record": "docs/status/verification.md#difficulty-ladder-main-check-in-2026-10-31"
+  }
 }
