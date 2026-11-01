@@ -1,17 +1,24 @@
 {
   "game": "Catiators",
-  "source_commit": "8ba44bc80c9ed3520c2302b1c86e4e2dce6cc64f",
+  "source_commit": "66149f5b30cb2416a8644d60334e43c9bb353a50",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "built_at": "2026-10-31T11:49:05.455560+00:00",
-  "export_validation": "passed",
-  "local_browser_smoke": "passed_title_difficulty_selection_practice_and_keyboard_pause",
+  "built_at": "2026-11-01T21:52:37.795902+00:00",
+  "export_validation": "passed_seven_files_and_empty_project_pack_probe",
+  "local_browser_smoke": "passed_headless_edge_title_selection_squad_normal_arena_keyboard_pause",
   "local_source_validation": {
-    "implementation_commit": "42c3b2754ab940da6389a798afd9f1b0db60b800",
-    "python_tests": 354,
-    "godot_tests": 735,
-    "seeded_smoke_cases": 6,
-    "record": "docs/status/verification.md#difficulty-ladder-main-check-in-2026-10-31"
+    "selection_feedback": {
+      "python_tests": 308,
+      "godot_tests": 20,
+      "assertions": 9380,
+      "record": "docs/status/verification.md#selection-unlocked-tally-2026-11-01"
+    },
+    "integration_scope": {
+      "godot_tests": 49,
+      "assertions": 9974,
+      "record": "docs/status/verification.md#selection-screen-sync-with-main-2026-11-01"
+    },
+    "hosted_candidate": "not_run"
   }
 }
