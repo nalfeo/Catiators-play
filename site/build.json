@@ -1,20 +1,27 @@
 {
   "game": "Catiators",
-  "source_commit": "982957aa04b8c2ca393aed9ad256598be897a856",
+  "source_commit": "f21b987ce2e6040b11bd993a3a46cf799f026108",
+  "source_branch": "codex/mount-editor-feedback",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "built_at": "2026-11-02T06:40:23.993350+00:00",
+  "built_at": "2026-11-03T00:42:53.752242+00:00",
   "export_validation": "passed_seven_files_and_empty_project_pack_probe",
-  "local_browser_smoke": "In-app browser at 1280x720: title, Play to House Home, Prepare run, single-player one-card setup, Arena and difficulty dialog and Cancel, optional Details, Squad CPU labels, return to single player. Arena entry and live-browser behavior remain unverified because browser control became disabled in Work settings.",
+  "local_browser_smoke": "In-app browser at 1280x720: title, Play to House Home, Prepare run, single-player setup, enter Sunstone Ring, active enemies/combat, keyboard input and pause. Isolated localhost origin; broader controller, audio and full-run acceptance pending.",
   "local_source_validation": {
-    "base": "987f6f2621645b11ed306d4e696e4d3e484adfab",
-    "python_tests": 310,
-    "godot_scripts": 99,
-    "godot_tests": 774,
-    "assertions": 153560,
+    "result": "failed_user_accepted_checkpoint",
+    "godot_scripts": 106,
+    "godot_tests": 859,
+    "godot_passed": 855,
+    "godot_failed": 4,
+    "failed_tests": [
+      "test_rendered_silver_changes_fur_without_changing_body_silhouette",
+      "test_mixed_recipes_share_gear_objects_and_original_face_pixels",
+      "test_every_headwear_shares_skins_follows_brow_and_keeps_one_slot",
+      "test_bronze_galea_preserves_both_original_ear_interiors"
+    ],
     "seeded_smoke_cases": 6,
-    "source_record": "docs/status/verification.md#house-and-variable-mob-check-in-2026-11-01",
-    "hosted_candidate": "not_run"
+    "source_record": "docs/status/verification.md#requested-equipment-checkpoint-publication-2026-11-02",
+    "authorization": "User explicitly requested commit, push and publish before diagnosing and fixing the known failures."
   }
 }
