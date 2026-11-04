@@ -1,27 +1,21 @@
 {
   "game": "Catiators",
-  "source_commit": "f21b987ce2e6040b11bd993a3a46cf799f026108",
-  "source_branch": "codex/mount-editor-feedback",
+  "source_commit": "e315487565f28b6dfdce7311c93431f3c46e7478",
+  "source_branch": "main",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "built_at": "2026-11-03T00:42:53.752242+00:00",
+  "built_at": "2026-11-04T15:36:00.258803+00:00",
   "export_validation": "passed_seven_files_and_empty_project_pack_probe",
-  "local_browser_smoke": "In-app browser at 1280x720: title, Play to House Home, Prepare run, single-player setup, enter Sunstone Ring, active enemies/combat, keyboard input and pause. Isolated localhost origin; broader controller, audio and full-run acceptance pending.",
+  "local_browser_smoke": "In-app browser 1280x720: title, House Home, single-player setup, Sunstone Ring combat rendering, keyboard movement and pause. Reload retained naturally discovered Sewer Ratling and Gladius in Collection/Codex. Broader controller/audio/full-run acceptance pending.",
   "local_source_validation": {
-    "result": "failed_user_accepted_checkpoint",
-    "godot_scripts": 106,
-    "godot_tests": 859,
-    "godot_passed": 855,
-    "godot_failed": 4,
-    "failed_tests": [
-      "test_rendered_silver_changes_fur_without_changing_body_silhouette",
-      "test_mixed_recipes_share_gear_objects_and_original_face_pixels",
-      "test_every_headwear_shares_skins_follows_brow_and_keeps_one_slot",
-      "test_bronze_galea_preserves_both_original_ear_interiors"
-    ],
+    "result": "passed",
+    "python_tests": 554,
+    "godot_scripts": 179,
+    "godot_tests": 1596,
+    "godot_failed": 0,
     "seeded_smoke_cases": 6,
-    "source_record": "docs/status/verification.md#requested-equipment-checkpoint-publication-2026-11-02",
-    "authorization": "User explicitly requested commit, push and publish before diagnosing and fixing the known failures."
+    "blender_matrix": "passed",
+    "source_record": "docs/status/verification.md#final-integrated-weapon-check-in-acceptance--2026-11-04"
   }
 }
