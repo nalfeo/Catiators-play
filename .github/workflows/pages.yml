@@ -21,14 +21,52 @@ jobs:
       - name: Check the published files against the checked export
         run: |
           python3 - <<'PY'
-          import hashlib, json
+          import hashlib, io, json, re, struct
           from pathlib import Path
+          from urllib.parse import urlsplit
           site = Path('site')
           manifest = json.loads((site / 'web-export.json').read_text())
           expected = {'index.html', 'index.js', 'index.wasm', 'index.pck', 'index.png',
                       'index.audio.worklet.js', 'index.audio.position.worklet.js'}
           assert set(manifest['files']) == expected
           assert manifest['thread_support'] is False and manifest['mode'] == 'release'
+          build = json.loads((site / 'build.json').read_text())
+          revision = build.get('source_commit', '')
+          assert isinstance(revision, str) and re.fullmatch(r'[0-9a-f]{40}', revision), 'Missing source commit provenance'
+          telemetry = manifest.get('telemetry', {})
+          override = manifest.get('telemetry_override')
+          if override:
+              assert override.get('method') == 'web-preload-v1' and override.get('file') == 'telemetry_config.json'
+              config_path = site / 'telemetry_config.json'
+              assert config_path.is_file() and not config_path.is_symlink()
+              payload = config_path.read_bytes()
+              assert len(payload) == override['bytes'] > 0 and hashlib.sha256(payload).hexdigest() == override['sha256']
+              config = json.loads(payload)
+              assert set(config) == {'posthog_host', 'posthog_token', 'sentry_dsn', 'release', 'environment'}
+              assert all(isinstance(v, str) and len(v) <= 512 for v in config.values())
+              assert re.fullmatch(r'phc_[A-Za-z0-9]+', config['posthog_token']), 'Expected public PostHog client token'
+              host = urlsplit(config['posthog_host'])
+              assert host.scheme == 'https' and host.hostname and not host.username and not host.password and not host.query and not host.fragment
+              assert not any(c.isspace() for c in config['posthog_host'])
+              assert re.fullmatch(r'https://[A-Za-z0-9]+@[A-Za-z0-9.-]+(?::[0-9]+)?(/[^?#]*)?/[0-9]+', config['sentry_dsn']), 'Expected public Sentry DSN'
+              config_digest = override['sha256']
+              bootstrap = (
+                  'const startGameWithPackedAssets = engine.startGame.bind(engine);\n'
+                  'engine.startGame = (options) => engine.preloadFile(\n'
+                  f'    "telemetry_config.json?v={config_digest}", "/telemetry_config.json"\n'
+                  ').then(() => startGameWithPackedAssets(options));\n'
+              )
+              html = (site / 'index.html').read_text()
+              assert html.count(bootstrap) == 1 and html.count('engine.startGame({') == 1, 'Missing checked telemetry startup loader'
+              assert html.index(bootstrap) < html.index('engine.startGame({'), 'Telemetry must load before startup'
+              telemetry = {'posthog': True, 'sentry': True, 'release': config['release'], 'environment': config['environment']}
+              assert build.get('telemetry') == telemetry, 'Runtime telemetry provenance differs'
+              patch = build.get('telemetry_patch', {})
+              assert patch.get('method') == 'web-preload-v1' and patch.get('pack_unchanged_sha256') == manifest['files']['index.pck']['sha256'], 'Pack preservation provenance differs'
+          assert telemetry.get('posthog') is True, 'PostHog must be configured in official playtest builds'
+          assert telemetry.get('sentry') is True, 'Sentry must be configured in official playtest builds'
+          assert telemetry.get('release') == 'catiators@' + revision, 'Telemetry release must match the published source'
+          assert telemetry.get('environment') == 'playtest', 'Telemetry must use the playtest environment'
           # GitHub rejects Git blobs over 100 MiB. Rebuild a large pack from
           # exactly two bounded parts, then verify the original artifact hash.
           pack = site / 'index.pck'
@@ -48,8 +86,29 @@ jobs:
               payload = path.read_bytes()
               assert len(payload) == record['bytes'] > 0, name
               assert hashlib.sha256(payload).hexdigest() == record['sha256'], name
+          if override:
+              # A packed copy takes precedence over the preloaded physical file.
+              # Refuse overlays when the pack already owns that resource path.
+              with pack.open('rb') as stream:
+                  header = stream.read(40)
+                  assert header[:4] == b'GDPC' and struct.unpack_from('<I', header, 4)[0] == 4
+                  assert struct.unpack_from('<I', header, 20)[0] in (0, 2)
+                  offset = struct.unpack_from('<Q', header, 32)[0]
+                  assert 40 <= offset <= pack.stat().st_size - 4 and pack.stat().st_size - offset <= 16 * 1024 * 1024
+                  stream.seek(offset)
+                  directory = io.BytesIO(stream.read())
+              count = struct.unpack('<I', directory.read(4))[0]
+              assert count <= 100000
+              for _ in range(count):
+                  length = struct.unpack('<I', directory.read(4))[0]
+                  assert 0 < length <= 4096
+                  name = directory.read(length).rstrip(b'\0').removeprefix(b'res://')
+                  assert name != b'telemetry_config.json', 'Telemetry already embedded; rebuild configured pack'
+                  assert len(directory.read(36)) == 36
           for part in parts:
               part.unlink(missing_ok=True)
+          allowed = expected | {'web-export.json', 'build.json'} | ({'telemetry_config.json'} if override else set())
+          assert {p.name for p in site.iterdir()} == allowed, 'Unexpected unchecked site files'
           print('Checked export hashes match all seven game files.')
           PY
       - name: Upload only the checked game
