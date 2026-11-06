@@ -1,42 +1,36 @@
 {
   "game": "Catiators",
-  "source_commit": "9bc82b135e9fc6c712159fa87e49073f50c711e4",
+  "source_commit": "a3c430926b2f644bfb692416aed8d0b657457d4b",
   "source_branch": "main",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "built_at": "2026-11-06T11:33:35.026890+00:00",
+  "built_at": "2026-11-06T19:37:36.625353+00:00",
   "export_validation": "passed_seven_files_and_empty_project_pack_probe",
-  "publication_path": "explicitly_requested_local_build_and_manual_publication",
-  "local_browser_smoke": "not_run_browser_control_disabled_in_work_settings",
+  "publication_path": "user_requested_local_build_and_manual_publication",
+  "telemetry_policy": "disabled_by_explicit_user_request",
   "telemetry": {
-    "environment": "development",
+    "environment": "playtest",
     "posthog": false,
-    "release": "development",
+    "release": "catiators@a3c430926b2f644bfb692416aed8d0b657457d4b",
     "sentry": false
   },
-  "telemetry_configuration": "not_configured_in_this_manual_playtest_build",
+  "local_browser_smoke": "not_run_browser_control_disabled_in_work_settings",
   "local_source_validation": {
     "result": "passed",
-    "context": "Prior Windows check-in acceptance for this source change; standalone Web export rebuilt freshly for this publication.",
+    "base": "9bc82b135e9fc6c712159fa87e49073f50c711e4",
     "python_tests": 543,
     "godot_scripts": 196,
-    "godot_tests": 1697,
-    "godot_failed": 0,
+    "godot_tests": 1699,
+    "godot_assertions": 374438,
     "seeded_smoke_cases": 6,
     "blender_matrix": "not_selected",
-    "source_record": "docs/status/verification.md#publish-candidate-platform-fixture-isolation--2026-11-05"
-  },
-  "hosted_candidate_attempt": {
-    "run": 42181452687,
-    "result": "cancelled_after_shared_baseline_job_timeout",
-    "used_for_this_build": false
+    "source_record": "docs/status/verification.md#required-bot-rewards-and-armory-progress-2026-11-06"
   },
   "remaining_acceptance": [
     "interactive_browser",
     "physical_controllers",
     "audio_review",
-    "full_run_human_playtest",
-    "configured_telemetry_delivery"
+    "full_run_human_playtest"
   ]
 }
