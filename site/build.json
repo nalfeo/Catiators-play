@@ -1,21 +1,42 @@
 {
   "game": "Catiators",
-  "source_commit": "e315487565f28b6dfdce7311c93431f3c46e7478",
+  "source_commit": "9bc82b135e9fc6c712159fa87e49073f50c711e4",
   "source_branch": "main",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "built_at": "2026-11-04T15:36:00.258803+00:00",
+  "built_at": "2026-11-06T11:33:35.026890+00:00",
   "export_validation": "passed_seven_files_and_empty_project_pack_probe",
-  "local_browser_smoke": "In-app browser 1280x720: title, House Home, single-player setup, Sunstone Ring combat rendering, keyboard movement and pause. Reload retained naturally discovered Sewer Ratling and Gladius in Collection/Codex. Broader controller/audio/full-run acceptance pending.",
+  "publication_path": "explicitly_requested_local_build_and_manual_publication",
+  "local_browser_smoke": "not_run_browser_control_disabled_in_work_settings",
+  "telemetry": {
+    "environment": "development",
+    "posthog": false,
+    "release": "development",
+    "sentry": false
+  },
+  "telemetry_configuration": "not_configured_in_this_manual_playtest_build",
   "local_source_validation": {
     "result": "passed",
-    "python_tests": 554,
-    "godot_scripts": 179,
-    "godot_tests": 1596,
+    "context": "Prior Windows check-in acceptance for this source change; standalone Web export rebuilt freshly for this publication.",
+    "python_tests": 543,
+    "godot_scripts": 196,
+    "godot_tests": 1697,
     "godot_failed": 0,
     "seeded_smoke_cases": 6,
-    "blender_matrix": "passed",
-    "source_record": "docs/status/verification.md#final-integrated-weapon-check-in-acceptance--2026-11-04"
-  }
+    "blender_matrix": "not_selected",
+    "source_record": "docs/status/verification.md#publish-candidate-platform-fixture-isolation--2026-11-05"
+  },
+  "hosted_candidate_attempt": {
+    "run": 42181452687,
+    "result": "cancelled_after_shared_baseline_job_timeout",
+    "used_for_this_build": false
+  },
+  "remaining_acceptance": [
+    "interactive_browser",
+    "physical_controllers",
+    "audio_review",
+    "full_run_human_playtest",
+    "configured_telemetry_delivery"
+  ]
 }
