@@ -1,36 +1,15 @@
 {
-  "game": "Catiators",
-  "source_commit": "a3c430926b2f644bfb692416aed8d0b657457d4b",
-  "source_branch": "main",
+  "source_repository": "nalfeo/Catiators",
+  "source_commit": "36cc0967c85b12127c57abc1aef7c6e02cfa182b",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "built_at": "2026-11-06T19:37:36.625353+00:00",
-  "export_validation": "passed_seven_files_and_empty_project_pack_probe",
-  "publication_path": "user_requested_local_build_and_manual_publication",
-  "telemetry_policy": "disabled_by_explicit_user_request",
+  "published_utc": "2026-11-09T23:14:06.523932+00:00",
   "telemetry": {
     "environment": "playtest",
-    "posthog": false,
-    "release": "catiators@a3c430926b2f644bfb692416aed8d0b657457d4b",
-    "sentry": false
+    "posthog": true,
+    "release": "catiators@36cc0967c85b12127c57abc1aef7c6e02cfa182b",
+    "sentry": true
   },
-  "local_browser_smoke": "not_run_browser_control_disabled_in_work_settings",
-  "local_source_validation": {
-    "result": "passed",
-    "base": "9bc82b135e9fc6c712159fa87e49073f50c711e4",
-    "python_tests": 543,
-    "godot_scripts": 196,
-    "godot_tests": 1699,
-    "godot_assertions": 374438,
-    "seeded_smoke_cases": 6,
-    "blender_matrix": "not_selected",
-    "source_record": "docs/status/verification.md#required-bot-rewards-and-armory-progress-2026-11-06"
-  },
-  "remaining_acceptance": [
-    "interactive_browser",
-    "physical_controllers",
-    "audio_review",
-    "full_run_human_playtest"
-  ]
+  "pack_sha256": "8671204f5b77a48972189598d5d6a20ed6254d2bc3940f05c34693bad90bba98"
 }

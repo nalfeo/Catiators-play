@@ -63,13 +63,8 @@ jobs:
               assert build.get('telemetry') == telemetry, 'Runtime telemetry provenance differs'
               patch = build.get('telemetry_patch', {})
               assert patch.get('method') == 'web-preload-v1' and patch.get('pack_unchanged_sha256') == manifest['files']['index.pck']['sha256'], 'Pack preservation provenance differs'
-          if build.get('telemetry_policy') == 'disabled_by_explicit_user_request':
-              assert not override, 'Disabled telemetry cannot carry a configuration overlay'
-              assert telemetry.get('posthog') is False and telemetry.get('sentry') is False
-              assert build.get('build_origin') == 'local_windows', 'Expected the reviewed local playtest artifact'
-          else:
-              assert telemetry.get('posthog') is True, 'PostHog must be configured in official playtest builds'
-              assert telemetry.get('sentry') is True, 'Sentry must be configured in official playtest builds'
+          assert telemetry.get('posthog') is True, 'PostHog must be configured in official playtest builds'
+          assert telemetry.get('sentry') is True, 'Sentry must be configured in official playtest builds'
           assert telemetry.get('release') == 'catiators@' + revision, 'Telemetry release must match the published source'
           assert telemetry.get('environment') == 'playtest', 'Telemetry must use the playtest environment'
           # GitHub rejects Git blobs over 100 MiB. Rebuild a large pack from
