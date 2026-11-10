@@ -109,14 +109,36 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":87055324,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":87253228,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=8671204f5b77a48972189598d5d6a20ed6254d2bc3940f05c34693bad90bba98";
+const GAME_PACK_URL = "index.pck?v=85bc68be5e56bd96290bc08df0e2d347dcd46332bdfbac8e323de11dc8f76999";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 const engine = new Engine(GODOT_CONFIG);
 const preloadGameFile = engine.preloadFile.bind(engine);
 engine.preloadFile = (file, path) => preloadGameFile(
     file === "index.pck" ? GAME_PACK_URL : file, path);
+window.catiatorsStartupMetrics = () => {
+    const startupMs = Math.round(performance.now());
+    const packUrl = new URL(GAME_PACK_URL, document.baseURI).href;
+    const pack = performance.getEntriesByName(packUrl, "resource")
+        .find(entry => entry.responseEnd > 0);
+    const metrics = {
+        startup_ms: startupMs,
+        pack_bytes: GODOT_CONFIG.fileSizes["index.pck"],
+        pack_cache_status: "unknown",
+    };
+    if (pack) {
+        metrics.pack_fetch_ms = Math.round(pack.duration);
+        metrics.pack_transfer_bytes = pack.transferSize;
+        if (pack.deliveryType === "cache" || pack.responseStatus === 304) {
+            metrics.pack_cache_status = "hit";
+        } else if (pack.encodedBodySize > 0 && Number.isFinite(pack.transferSize)) {
+            // A revalidated response can transfer headers while reusing the cached body.
+            metrics.pack_cache_status = pack.transferSize < pack.encodedBodySize ? "hit" : "miss";
+        }
+    }
+    return JSON.stringify(metrics);
+};
 
 (function () {
 	const statusOverlay = document.getElementById('status');
