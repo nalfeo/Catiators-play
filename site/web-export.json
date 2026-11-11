@@ -9,7 +9,7 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@c1b64faffd62fd848f2ca6620320be270780e2c3",
+    "release": "catiators@e56c6b23b5ad97a0f4acd68dec73a96f91cf3855",
     "sentry": true
   },
   "files": {
@@ -23,15 +23,15 @@
     },
     "index.html": {
       "bytes": 7012,
-      "sha256": "c27d6d8374ca72ebf31e5db5ffed64ce7b5fb8be7fb5121e7d042e68fe08665e"
+      "sha256": "718a256da01ebb22861a54d3b8d23d1453db3dcfb7c4646f12a3c970d1307a53"
     },
     "index.js": {
       "bytes": 280793,
       "sha256": "72b77980e699e33e9eed256e51f090fa46acdcf107103025604dbec0cf8f388e"
     },
     "index.pck": {
-      "bytes": 209912648,
-      "sha256": "b3d9367a8f4a82279b2573f680a72cfe3897696e494a377f13eb01410362dbba"
+      "bytes": 123284812,
+      "sha256": "110691e0fbe672d87a2c93708158334af399746ecb48a3dd697292b870f4dfc9"
     },
     "index.png": {
       "bytes": 2529562,

@@ -1,22 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "c1b64faffd62fd848f2ca6620320be270780e2c3",
+  "source_commit": "e56c6b23b5ad97a0f4acd68dec73a96f91cf3855",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-11T05:23:25.007863+00:00",
+  "published_utc": "2026-11-11T05:35:12.744461+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@c1b64faffd62fd848f2ca6620320be270780e2c3",
+    "release": "catiators@e56c6b23b5ad97a0f4acd68dec73a96f91cf3855",
     "sentry": true
   },
-  "pack_sha256": "b3d9367a8f4a82279b2573f680a72cfe3897696e494a377f13eb01410362dbba",
+  "pack_sha256": "110691e0fbe672d87a2c93708158334af399746ecb48a3dd697292b870f4dfc9",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261111T050713Z-ef9a1d77",
+    "report": "20261111T052605Z-34712f45",
     "result": "passed",
     "engine_tests": 1784,
-    "python_tests": 598
+    "python_tests": 606,
+    "followup_checks": "25 fresh exporter tests; configured export and isolated mounted-PCK probe after authoring-asset exclusions"
   }
 }
