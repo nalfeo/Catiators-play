@@ -1,21 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "21540bfa21384119b6d542634801deba1374af85",
+  "source_commit": "d6c1ecb3df4fe147aeda0763581b6c439e6746ad",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-11T18:48:53.423949+00:00",
+  "published_utc": "2026-11-11T20:39:39.255206+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@21540bfa21384119b6d542634801deba1374af85",
+    "release": "catiators@d6c1ecb3df4fe147aeda0763581b6c439e6746ad",
     "sentry": true
   },
-  "pack_sha256": "c360d24d07074ed6ca6acc0e7a95efa777e85208d9f93b9263ba8c3a31c00aa3",
+  "pack_sha256": "0858c46a1fc31a8562339ea5f2af57390326e1e3adf44f92cc46880ec3f6e46c",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261111T183516Z-e7580d26",
+    "report": "20261111T201557Z-2ffb548a",
     "result": "passed",
-    "followup_checks": "Configured checked export; byte-identical tested heap policy; desktop Edge title, normal house and four-cat rendering"
+    "followup_checks": "Configured checked export; desktop Edge performance overlay and engine-free recovery inspected; Xbox Series X throughput remains unverified",
+    "engine_tests": 1880,
+    "python_tests": 680
   }
 }

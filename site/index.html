@@ -109,9 +109,9 @@ body {
 
 		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194475452,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194486440,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=c360d24d07074ed6ca6acc0e7a95efa777e85208d9f93b9263ba8c3a31c00aa3";
+const GAME_PACK_URL = "index.pck?v=0858c46a1fc31a8562339ea5f2af57390326e1e3adf44f92cc46880ec3f6e46c";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -248,14 +248,15 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Opt-in, origin-local startup diagnostics. No requests or automatic uploads. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@21540bfa21384119b6d542634801deba1374af85", "pack_bytes": 194475452};
+    const build = {"release": "catiators@d6c1ecb3df4fe147aeda0763581b6c439e6746ad", "pack_bytes": 194486440};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
     const fixed720 = query.get("render_720p") === "1";
     const simpleHouse = enabled && query.get("house_simple") === "1";
     const prefix = "catiators.startup-diagnostics.v1.";
-    const counterNames = ["fps", "objects", "nodes", "resources", "texture_bytes", "render_bytes",
+    const counterNames = ["fps", "fps_cap", "frame_ms", "physics_ms", "draw_calls", "primitives",
+        "objects", "nodes", "resources", "texture_bytes", "render_bytes",
         "static_bytes", "viewport_width", "viewport_height"];
     const stages = new Set(["html_ready", "loader_requested", "loader_ready", "loader_failed",
         "engine_constructing", "engine_init_requested", "engine_init_resolved", "engine_init_failed",
@@ -310,7 +311,12 @@ window.catiatorsDiagnostics.stage("feature_missing");
     function persist() {
         if (!attempt) return;
         try {
-            localStorage.setItem(key, JSON.stringify(attempt));
+            let serialized = JSON.stringify(attempt);
+            while (serialized.length > 32768 && attempt.samples.length > 1) {
+                attempt.samples.shift();
+                serialized = JSON.stringify(attempt);
+            }
+            localStorage.setItem(key, serialized);
             const stored = savedAttempts();
             for (const old of stored.slice(2)) localStorage.removeItem(old.key);
         } catch (_) { storageFailed = true; }
@@ -321,6 +327,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
         const latest = attempt.samples[attempt.samples.length - 1];
         const mib = value => finite(value) ? (value / 1048576).toFixed(1) : "n/a";
         const count = value => finite(value) ? String(Math.round(value)) : "n/a";
+        const millis = value => finite(value) ? value.toFixed(1) : "n/a";
+        const flag = value => typeof value === "boolean" ? (value ? "yes" : "no") : "n/a";
         const release = build.release.replace(/^catiators@/, "").slice(0, 16);
         const lines = [
             "LOCAL DIAGNOSTICS — not uploaded",
@@ -328,6 +336,12 @@ window.catiatorsDiagnostics.stage("feature_missing");
             "Build: " + release + " | Pack: " + mib(build.pack_bytes) + " MiB",
             "Canvas: " + count(latest.canvas_width) + "×" + count(latest.canvas_height) +
                 " | DPR: " + latest.device_pixel_ratio,
+            "FPS: " + count(latest.fps) + " | cap: " + (latest.fps_cap === 0 ? "off" : count(latest.fps_cap)) +
+                " | background limit: " + flag(latest.background_limited),
+            "Focus: engine " + flag(latest.window_focused) + " | page " + flag(latest.page_focused) +
+                " | hidden " + flag(latest.page_hidden),
+            "Engine ms: frame " + millis(latest.frame_ms) + " | physics " + millis(latest.physics_ms),
+            "Draw calls: " + count(latest.draw_calls) + " | primitives: " + count(latest.primitives),
             "MiB: WASM " + mib(latest.wasm_buffer_bytes) + " | render " + mib(latest.render_bytes) +
                 " | texture " + mib(latest.texture_bytes),
             "JS heap used: " + mib(latest.js_heap_used_bytes) + " MiB (nonstandard)",
@@ -345,6 +359,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
         const heap = boundEngine && boundEngine.rtenv && boundEngine.rtenv.HEAPU8;
         const memory = performance.memory;
         const browserMemory = {
+            page_focused: document.hasFocus(),
+            page_hidden: document.hidden,
             wasm_buffer_bytes: heap && heap.buffer && finite(heap.buffer.byteLength) ? heap.buffer.byteLength : null,
             js_heap_used_bytes: memory && finite(memory.usedJSHeapSize) ? memory.usedJSHeapSize : null,
             js_heap_total_bytes: memory && finite(memory.totalJSHeapSize) ? memory.totalJSHeapSize : null,
@@ -377,6 +393,9 @@ window.catiatorsDiagnostics.stage("feature_missing");
         counters = {};
         for (const name of counterNames) {
             if (value[name] === null || finite(value[name])) counters[name] = value[name];
+        }
+        for (const name of ["window_focused", "background_limited"]) {
+            if (value[name] === null || typeof value[name] === "boolean") counters[name] = value[name];
         }
         if (typeof value.static_memory_supported === "boolean") {
             counters.static_memory_supported = value.static_memory_supported;
@@ -459,7 +478,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
             render_720p: fixed720, house_simple: simpleHouse, title_reached: false, last_stage: phase, samples: []};
         hud = document.createElement("pre");
         hud.id = "catiators-diagnostics-hud";
-        hud.style.cssText = "position:fixed;left:8px;top:8px;z-index:2147483647;max-width:calc(100vw - 32px);max-height:200px;box-sizing:border-box;overflow:hidden;white-space:pre;background:#111e;color:#fff;margin:0;padding:8px;font:14px/18px monospace;pointer-events:none;";
+        hud.style.cssText = "position:fixed;left:8px;top:8px;z-index:2147483647;max-width:calc(100vw - 32px);max-height:280px;box-sizing:border-box;overflow:hidden;white-space:pre;background:#111e;color:#fff;margin:0;padding:8px;font:14px/18px monospace;pointer-events:none;";
         document.body.appendChild(hud);
         window.addEventListener("error", () => stage("javascript_error"));
         window.addEventListener("unhandledrejection", () => stage("unhandled_rejection"));
