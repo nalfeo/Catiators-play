@@ -101,17 +101,17 @@ body {
 			Your browser does not support JavaScript.
 		</noscript>
 
-		<div id="status">
+		<div id="status"><div id="build-version" style="position:fixed;left:24px;bottom:18px;color:#fff1cf;font:18px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.11-dev</div>
 			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=72b77980e699e33e9eed256e51f090fa46acdcf107103025604dbec0cf8f388e"></script>
+		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":126077568,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194475452,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=9a624b6085e0c10241b8a44b89e3dbe5a8c6068e5499b99ed58908bd56bf2670";
+const GAME_PACK_URL = "index.pck?v=c360d24d07074ed6ca6acc0e7a95efa777e85208d9f93b9263ba8c3a31c00aa3";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -248,7 +248,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Opt-in, origin-local startup diagnostics. No requests or automatic uploads. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@2bb522f9c9d8e179c739a7ad4ecf808f6a120736", "pack_bytes": 126077568};
+    const build = {"release": "catiators@21540bfa21384119b6d542634801deba1374af85", "pack_bytes": 194475452};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";

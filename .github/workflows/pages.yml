@@ -30,6 +30,10 @@ jobs:
                       'index.audio.worklet.js', 'index.audio.position.worklet.js'}
           assert set(manifest['files']) == expected
           assert manifest['thread_support'] is False and manifest['mode'] == 'release'
+          policy = manifest.get('asset_policy', {})
+          assert policy.get('schema') == 1, 'Re-export with the runtime asset policy before publishing'
+          assert re.fullmatch(r'[0-9a-f]{64}', policy.get('policy_sha256', '')), 'Missing asset policy provenance'
+          assert policy.get('pck_sha256') == manifest['files']['index.pck']['sha256'], 'Asset audit belongs to another pack'
           build = json.loads((site / 'build.json').read_text())
           revision = build.get('source_commit', '')
           assert isinstance(revision, str) and re.fullmatch(r'[0-9a-f]{40}', revision), 'Missing source commit provenance'
