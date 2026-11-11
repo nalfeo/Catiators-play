@@ -109,9 +109,9 @@ body {
 
 		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194486440,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194497960,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=0858c46a1fc31a8562339ea5f2af57390326e1e3adf44f92cc46880ec3f6e46c";
+const GAME_PACK_URL = "index.pck?v=ee4d5510c3a1b836ee01f81803c5a6a1fdf4333111d0a17ba0deedad42f36661";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -245,10 +245,10 @@ window.catiatorsDiagnostics.stage("feature_missing");
 		
 </script>
 <script>
-/* Opt-in, origin-local startup diagnostics. No requests or automatic uploads. */
+/* Opt-in startup diagnostics. Hosted samples use the consent-gated game recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@d6c1ecb3df4fe147aeda0763581b6c439e6746ad", "pack_bytes": 194486440};
+    const build = {"release": "catiators@3de75082d3be2adbb62a237b25d58b5394f63de1", "pack_bytes": 194497960};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
@@ -274,6 +274,15 @@ window.catiatorsDiagnostics.stage("feature_missing");
     let counters = {};
     let phase = "html_ready";
     let boundEngine = null;
+    let telemetrySink = null;
+    let telemetrySharing = false;
+    let lastTelemetryMs = -Infinity;
+    let sharingSampleGeneration = Infinity;
+    let engineSampleGeneration = 0;
+    let engineSampleMs = null;
+    const sentErrors = new Set();
+    const errors = new Set(["loader_failed", "engine_init_failed", "startup_failed", "pack_preload_failed",
+        "javascript_error", "unhandled_rejection", "webgl_context_lost", "feature_missing"]);
     const validStage = value => stages.has(value);
     const finite = value => typeof value === "number" && Number.isFinite(value) && value >= 0;
 
@@ -331,7 +340,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
         const flag = value => typeof value === "boolean" ? (value ? "yes" : "no") : "n/a";
         const release = build.release.replace(/^catiators@/, "").slice(0, 16);
         const lines = [
-            "LOCAL DIAGNOSTICS — not uploaded",
+            telemetrySharing ? "DIAGNOSTICS — PostHog sharing enabled" : "DIAGNOSTICS — local only",
             "Stage: " + latest.stage,
             "Build: " + release + " | Pack: " + mib(build.pack_bytes) + " MiB",
             "Canvas: " + count(latest.canvas_width) + "×" + count(latest.canvas_height) +
@@ -354,7 +363,40 @@ window.catiatorsDiagnostics.stage("feature_missing");
         hud.textContent = lines.join("\n");
     }
 
-    function record() {
+    function connectTelemetry(callback, sharing) {
+        telemetrySink = enabled && !recovery && typeof callback === "function" ? callback : null;
+        setTelemetrySharing(sharing);
+    }
+
+    function setTelemetrySharing(sharing) {
+        const next = !!telemetrySink && sharing === true;
+        if (next !== telemetrySharing) {
+            lastTelemetryMs = performance.now();
+            sharingSampleGeneration = next ? engineSampleGeneration : Infinity;
+        }
+        telemetrySharing = next;
+        // Never replay samples collected before consent or while sharing was off.
+        show();
+    }
+
+    function share(latest, reason) {
+        if (!telemetrySharing || !telemetrySink) return;
+        const error = reason === "error";
+        if (error ? sentErrors.has(latest.stage) : latest.ms - lastTelemetryMs < 10000) return;
+        lastTelemetryMs = latest.ms;
+        if (error) sentErrors.add(latest.stage);
+        const current = {...latest};
+        if (engineSampleGeneration <= sharingSampleGeneration) {
+            for (const field of [...counterNames, "window_focused", "background_limited",
+                "static_memory_supported", "scene", "engine_sample_age_ms"]) delete current[field];
+        }
+        try {
+            telemetrySink(JSON.stringify({diagnostic_schema: 1, reason, pack_bytes: build.pack_bytes,
+                render_720p: fixed720, house_simple: simpleHouse, ...current}));
+        } catch (_) { /* Hosted diagnostics must never interrupt the game. */ }
+    }
+
+    function record(reason = "sample") {
         if (!enabled || !attempt) return;
         const heap = boundEngine && boundEngine.rtenv && boundEngine.rtenv.HEAPU8;
         const memory = performance.memory;
@@ -366,18 +408,22 @@ window.catiatorsDiagnostics.stage("feature_missing");
             js_heap_total_bytes: memory && finite(memory.totalJSHeapSize) ? memory.totalJSHeapSize : null,
             js_heap_limit_bytes: memory && finite(memory.jsHeapSizeLimit) ? memory.jsHeapSizeLimit : null,
         };
-        attempt.samples.push({ms: Math.round(performance.now()), stage: phase, ...dimensions(), ...counters, ...browserMemory});
+        const now = Math.round(performance.now());
+        const latest = {ms: now, stage: phase, ...dimensions(), ...counters, ...browserMemory,
+            engine_sample_age_ms: engineSampleMs === null ? null : Math.max(0, now - engineSampleMs)};
+        attempt.samples.push(latest);
         attempt.samples = attempt.samples.slice(-32);
         attempt.last_stage = phase;
         attempt.title_reached = attempt.title_reached || phase === "title_first_frame";
         persist();
         show();
+        share(latest, reason);
     }
 
     function stage(name) {
         if (!enabled || !validStage(name)) return;
         phase = name;
-        record();
+        record(errors.has(name) ? "error" : "sample");
     }
 
     function sample(input) {
@@ -390,6 +436,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
             }
         } catch (_) { return; }
         if (!value || typeof value !== "object") return;
+        engineSampleGeneration += 1;
+        engineSampleMs = Math.round(performance.now());
         counters = {};
         for (const name of counterNames) {
             if (value[name] === null || finite(value[name])) counters[name] = value[name];
@@ -449,14 +497,15 @@ window.catiatorsDiagnostics.stage("feature_missing");
         };
     }
 
-    window.catiatorsDiagnostics = {enabled, simpleHouse, stage, sample, prepare, bind};
+    window.catiatorsDiagnostics = {enabled, simpleHouse, stage, sample, prepare, bind,
+        connectTelemetry, setTelemetrySharing};
     if (recovery) {
         const records = savedAttempts().slice(0, 2).map(item => item.value);
         const latest = records[0];
         const lastSample = latest && latest.samples.length ? latest.samples[latest.samples.length - 1] : null;
         const panel = document.createElement("pre");
         panel.style.cssText = "white-space:pre-wrap;overflow-wrap:anywhere;padding:24px;color:#fff;background:#171717;font:18px monospace;";
-        panel.textContent = "LOCAL STARTUP RECOVERY — engine not loaded; nothing uploaded\n" +
+        panel.textContent = "LOCAL STARTUP RECOVERY — engine not loaded; this page sends nothing\n" +
             (latest ? "Last recorded stage: " + latest.last_stage + "\nRecorded build: " + latest.release +
                 "\nRecorded pack: " + latest.pack_bytes + " bytes\nLatest sample:\n" + JSON.stringify(lastSample, null, 2) + "\n\n" : "") +
             "Current build: " + build.release + "\nCurrent pack: " + build.pack_bytes + " bytes\n" +

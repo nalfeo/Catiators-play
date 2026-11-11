@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "d6c1ecb3df4fe147aeda0763581b6c439e6746ad",
+  "source_commit": "3de75082d3be2adbb62a237b25d58b5394f63de1",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-11T20:39:39.255206+00:00",
+  "published_utc": "2026-11-11T21:57:13.976108+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@d6c1ecb3df4fe147aeda0763581b6c439e6746ad",
+    "release": "catiators@3de75082d3be2adbb62a237b25d58b5394f63de1",
     "sentry": true
   },
-  "pack_sha256": "0858c46a1fc31a8562339ea5f2af57390326e1e3adf44f92cc46880ec3f6e46c",
+  "pack_sha256": "ee4d5510c3a1b836ee01f81803c5a6a1fdf4333111d0a17ba0deedad42f36661",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261111T201557Z-2ffb548a",
+    "report": "20261111T212707Z-3fad0ef0",
     "result": "passed",
-    "followup_checks": "Configured checked export; desktop Edge performance overlay and engine-free recovery inspected; Xbox Series X throughput remains unverified",
-    "engine_tests": 1880,
+    "followup_checks": "Configured checked export; consent and bounded PostHog diagnostics passed local component tests; browser ingestion evidence is recorded separately; Xbox throughput remains unverified",
+    "engine_tests": 1900,
     "python_tests": 680
   }
 }
