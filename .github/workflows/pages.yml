@@ -68,18 +68,30 @@ jobs:
           assert telemetry.get('release') == 'catiators@' + revision, 'Telemetry release must match the published source'
           assert telemetry.get('environment') == 'playtest', 'Telemetry must use the playtest environment'
           # GitHub rejects Git blobs over 100 MiB. Rebuild a large pack from
-          # exactly two bounded parts, then verify the original artifact hash.
+          # contiguous bounded parts, then verify the original artifact hash.
           pack = site / 'index.pck'
-          parts = [site / 'index.pck.part0', site / 'index.pck.part1']
+          candidates = list(site.glob('index.pck.part*'))
+          parts = []
+          assert not pack.is_symlink(), 'Pack must not be a symlink'
           if not pack.exists():
-              assert all(part.is_file() and not part.is_symlink() for part in parts)
-              with pack.open('wb') as output:
+              assert 2 <= len(candidates) <= 16, 'Expected 2..16 pack parts'
+              numbered = {}
+              for part in candidates:
+                  match = re.fullmatch(r'index\.pck\.part(0|[1-9][0-9]*)', part.name)
+                  assert match and part.is_file() and not part.is_symlink(), 'Invalid pack part: ' + part.name
+                  assert 0 < part.stat().st_size <= 100 * 1024 * 1024, 'Pack part exceeds 100 MiB or is empty'
+                  numbered[int(match[1])] = part
+              assert set(numbered) == set(range(len(candidates))), 'Pack parts must be contiguous from part0'
+              parts = [numbered[index] for index in range(len(candidates))]
+              expected_bytes = manifest['files']['index.pck']['bytes']
+              assert type(expected_bytes) is int and sum(part.stat().st_size for part in parts) == expected_bytes, 'Split pack byte count differs'
+              with pack.open('xb') as output:
                   for part in parts:
                       with part.open('rb') as source:
                           while chunk := source.read(1024 * 1024):
                               output.write(chunk)
           else:
-              assert not any(part.exists() for part in parts)
+              assert pack.is_file() and not candidates, 'Do not mix a pack with split parts'
           for name, record in manifest['files'].items():
               path = site / name
               assert path.is_file() and not path.is_symlink(), name

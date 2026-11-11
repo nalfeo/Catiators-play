@@ -9,7 +9,7 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@ecf757dc2add97b81a2d0faae20298d0c77e1b53",
+    "release": "catiators@c1b64faffd62fd848f2ca6620320be270780e2c3",
     "sentry": true
   },
   "files": {
@@ -22,16 +22,16 @@
       "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
     },
     "index.html": {
-      "bytes": 6944,
-      "sha256": "939139c6353b2120f718f9039a63c5d0592c744af00e2b91e6e05c54fba9a68c"
+      "bytes": 7012,
+      "sha256": "c27d6d8374ca72ebf31e5db5ffed64ce7b5fb8be7fb5121e7d042e68fe08665e"
     },
     "index.js": {
-      "bytes": 279815,
-      "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
+      "bytes": 280793,
+      "sha256": "72b77980e699e33e9eed256e51f090fa46acdcf107103025604dbec0cf8f388e"
     },
     "index.pck": {
-      "bytes": 87253228,
-      "sha256": "85bc68be5e56bd96290bc08df0e2d347dcd46332bdfbac8e323de11dc8f76999"
+      "bytes": 209912648,
+      "sha256": "b3d9367a8f4a82279b2573f680a72cfe3897696e494a377f13eb01410362dbba"
     },
     "index.png": {
       "bytes": 2529562,
