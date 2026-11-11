@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "e56c6b23b5ad97a0f4acd68dec73a96f91cf3855",
+  "source_commit": "2bb522f9c9d8e179c739a7ad4ecf808f6a120736",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-11T05:35:12.744461+00:00",
+  "published_utc": "2026-11-11T06:23:20.330996+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@e56c6b23b5ad97a0f4acd68dec73a96f91cf3855",
+    "release": "catiators@2bb522f9c9d8e179c739a7ad4ecf808f6a120736",
     "sentry": true
   },
-  "pack_sha256": "110691e0fbe672d87a2c93708158334af399746ecb48a3dd697292b870f4dfc9",
+  "pack_sha256": "9a624b6085e0c10241b8a44b89e3dbe5a8c6068e5499b99ed58908bd56bf2670",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261111T052605Z-34712f45",
+    "report": "20261111T061605Z-a2256d85",
     "result": "passed",
-    "engine_tests": 1784,
-    "python_tests": 606,
-    "followup_checks": "25 fresh exporter tests; configured export and isolated mounted-PCK probe after authoring-asset exclusions"
+    "engine_tests": 1833,
+    "python_tests": 609,
+    "followup_checks": "Configured export and isolated mounted-PCK probe; desktop Edge diagnostic/house/recovery checks"
   }
 }

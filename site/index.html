@@ -107,13 +107,15 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="index.js?v=72b77980e699e33e9eed256e51f090fa46acdcf107103025604dbec0cf8f388e"></script>
-		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":123284812,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=72b77980e699e33e9eed256e51f090fa46acdcf107103025604dbec0cf8f388e"></script>
+		<script id="catiators-startup" type="application/x-catiators-startup">
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":126077568,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=110691e0fbe672d87a2c93708158334af399746ecb48a3dd697292b870f4dfc9";
+const GAME_PACK_URL = "index.pck?v=9a624b6085e0c10241b8a44b89e3dbe5a8c6068e5499b99ed58908bd56bf2670";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
+window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
+window.catiatorsDiagnostics.bind(engine);
 const preloadGameFile = engine.preloadFile.bind(engine);
 engine.preloadFile = (file, path) => preloadGameFile(
     file === "index.pck" ? GAME_PACK_URL : file, path);
@@ -192,6 +194,7 @@ window.catiatorsStartupMetrics = () => {
 	});
 
 	if (missing.length !== 0) {
+window.catiatorsDiagnostics.stage("feature_missing");
 		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
 			let serviceWorkerRegistrationPromise;
 			try {
@@ -239,7 +242,245 @@ window.catiatorsStartupMetrics = () => {
 		}, displayFailureNotice);
 	}
 }());
-		</script>
+		
+</script>
+<script>
+/* Opt-in, origin-local startup diagnostics. No requests or automatic uploads. */
+(() => {
+    "use strict";
+    const build = {"release": "catiators@2bb522f9c9d8e179c739a7ad4ecf808f6a120736", "pack_bytes": 126077568};
+    const query = new URLSearchParams(location.search);
+    const enabled = query.get("diagnostics") === "1";
+    const recovery = query.get("diagnostics") === "read";
+    const fixed720 = query.get("render_720p") === "1";
+    const simpleHouse = enabled && query.get("house_simple") === "1";
+    const prefix = "catiators.startup-diagnostics.v1.";
+    const counterNames = ["fps", "objects", "nodes", "resources", "texture_bytes", "render_bytes",
+        "static_bytes", "viewport_width", "viewport_height"];
+    const stages = new Set(["html_ready", "loader_requested", "loader_ready", "loader_failed",
+        "engine_constructing", "engine_init_requested", "engine_init_resolved", "engine_init_failed",
+        "runtime_start_requested", "runtime_start_resolved", "start_game_requested", "start_game_resolved",
+        "startup_failed", "pack_preload_requested", "pack_preload_resolved", "pack_preload_failed",
+        "javascript_error", "unhandled_rejection", "webgl_context_lost", "feature_missing",
+        "autoload_ready", "main_ready", "sprites_before", "sprites_after", "cat_bundle_before", "cat_bundle_after",
+        "arena_before", "arena_after", "audio_before", "audio_after", "title_before", "title_after", "first_frame",
+        "title_first_frame", "house_home_begin", "house_home_add_child", "house_home_configure", "house_home_ready",
+        "house_cat_metadata_before", "house_cat_metadata_after", "house_cat_texture_before", "house_cat_texture_after"]);
+    let storageFailed = false;
+    let hud = null;
+    let attempt = null;
+    let key = "";
+    let counters = {};
+    let phase = "html_ready";
+    let boundEngine = null;
+    const validStage = value => stages.has(value);
+    const finite = value => typeof value === "number" && Number.isFinite(value) && value >= 0;
+
+    function dimensions() {
+        const canvas = document.getElementById("canvas");
+        const rect = canvas ? canvas.getBoundingClientRect() : null;
+        return {
+            canvas_width: canvas ? canvas.width : null,
+            canvas_height: canvas ? canvas.height : null,
+            canvas_css_width: rect ? Math.round(rect.width) : null,
+            canvas_css_height: rect ? Math.round(rect.height) : null,
+            device_pixel_ratio: finite(window.devicePixelRatio) ? window.devicePixelRatio : null,
+        };
+    }
+
+    function savedAttempts() {
+        const result = [];
+        try {
+            for (let i = 0; i < localStorage.length; i += 1) {
+                const name = localStorage.key(i);
+                if (!name || !name.startsWith(prefix)) continue;
+                const raw = localStorage.getItem(name);
+                if (!raw || raw.length > 32768) continue;
+                try {
+                    const value = JSON.parse(raw);
+                    if (value.schema === 1 && finite(value.started) && Array.isArray(value.samples)) {
+                        result.push({key: name, value});
+                    }
+                } catch (_) { /* A corrupt local diagnostic never prevents startup. */ }
+            }
+        } catch (_) { storageFailed = true; }
+        return result.sort((a, b) => b.value.started - a.value.started);
+    }
+
+    function persist() {
+        if (!attempt) return;
+        try {
+            localStorage.setItem(key, JSON.stringify(attempt));
+            const stored = savedAttempts();
+            for (const old of stored.slice(2)) localStorage.removeItem(old.key);
+        } catch (_) { storageFailed = true; }
+    }
+
+    function show() {
+        if (!hud || !attempt) return;
+        const latest = attempt.samples[attempt.samples.length - 1];
+        const mib = value => finite(value) ? (value / 1048576).toFixed(1) : "n/a";
+        const count = value => finite(value) ? String(Math.round(value)) : "n/a";
+        const release = build.release.replace(/^catiators@/, "").slice(0, 16);
+        const lines = [
+            "LOCAL DIAGNOSTICS — not uploaded",
+            "Stage: " + latest.stage,
+            "Build: " + release + " | Pack: " + mib(build.pack_bytes) + " MiB",
+            "Canvas: " + count(latest.canvas_width) + "×" + count(latest.canvas_height) +
+                " | DPR: " + latest.device_pixel_ratio,
+            "MiB: WASM " + mib(latest.wasm_buffer_bytes) + " | render " + mib(latest.render_bytes) +
+                " | texture " + mib(latest.texture_bytes),
+            "JS heap used: " + mib(latest.js_heap_used_bytes) + " MiB (nonstandard)",
+            "Objects " + count(latest.objects) + " | nodes " + count(latest.nodes) +
+                " | resources " + count(latest.resources),
+            "Modes: 720p " + (fixed720 ? "on" : "off") + " | house " + (simpleHouse ? "simple" : "normal"),
+            "Recovery: ?diagnostics=read",
+        ];
+        if (storageFailed) lines.push("Storage unavailable; trace may not survive.");
+        hud.textContent = lines.join("\n");
+    }
+
+    function record() {
+        if (!enabled || !attempt) return;
+        const heap = boundEngine && boundEngine.rtenv && boundEngine.rtenv.HEAPU8;
+        const memory = performance.memory;
+        const browserMemory = {
+            wasm_buffer_bytes: heap && heap.buffer && finite(heap.buffer.byteLength) ? heap.buffer.byteLength : null,
+            js_heap_used_bytes: memory && finite(memory.usedJSHeapSize) ? memory.usedJSHeapSize : null,
+            js_heap_total_bytes: memory && finite(memory.totalJSHeapSize) ? memory.totalJSHeapSize : null,
+            js_heap_limit_bytes: memory && finite(memory.jsHeapSizeLimit) ? memory.jsHeapSizeLimit : null,
+        };
+        attempt.samples.push({ms: Math.round(performance.now()), stage: phase, ...dimensions(), ...counters, ...browserMemory});
+        attempt.samples = attempt.samples.slice(-32);
+        attempt.last_stage = phase;
+        attempt.title_reached = attempt.title_reached || phase === "title_first_frame";
+        persist();
+        show();
+    }
+
+    function stage(name) {
+        if (!enabled || !validStage(name)) return;
+        phase = name;
+        record();
+    }
+
+    function sample(input) {
+        if (!enabled) return;
+        let value = input;
+        try {
+            if (typeof input === "string") {
+                if (input.length > 4096) return;
+                value = JSON.parse(input);
+            }
+        } catch (_) { return; }
+        if (!value || typeof value !== "object") return;
+        counters = {};
+        for (const name of counterNames) {
+            if (value[name] === null || finite(value[name])) counters[name] = value[name];
+        }
+        if (typeof value.static_memory_supported === "boolean") {
+            counters.static_memory_supported = value.static_memory_supported;
+        }
+        if (value.scene === "main.tscn" || value.scene === "unavailable") counters.scene = value.scene;
+        record();
+    }
+
+    function prepare(config) {
+        if (fixed720) {
+            config.canvasResizePolicy = 0;
+            const canvas = document.getElementById("canvas");
+            if (canvas) {
+                canvas.width = 1280;
+                canvas.height = 720;
+                canvas.style.width = "1280px";
+                canvas.style.height = "720px";
+                canvas.style.maxWidth = "100vw";
+                canvas.style.maxHeight = "100vh";
+                canvas.style.objectFit = "contain";
+            }
+        }
+        stage("engine_constructing");
+    }
+
+    function bind(engine) {
+        if (!enabled) return;
+        boundEngine = engine;
+        for (const [method, before, after] of [
+            ["init", "engine_init_requested", "engine_init_resolved"],
+            ["start", "runtime_start_requested", "runtime_start_resolved"],
+            ["startGame", "start_game_requested", "start_game_resolved"],
+        ]) {
+            const original = engine[method].bind(engine);
+            engine[method] = (...args) => {
+                stage(before);
+                try {
+                    return Promise.resolve(original(...args)).then(value => { stage(after); return value; },
+                        error => { stage(method === "init" ? "engine_init_failed" : "startup_failed"); throw error; });
+                } catch (error) { stage("startup_failed"); throw error; }
+            };
+        }
+        const preload = engine.preloadFile.bind(engine);
+        engine.preloadFile = (file, path) => {
+            const pack = typeof file === "string" && /\.pck(?:\?|$)/.test(file);
+            if (pack) stage("pack_preload_requested");
+            return Promise.resolve(preload(file, path)).then(value => {
+                if (pack) stage("pack_preload_resolved");
+                return value;
+            }, error => { if (pack) stage("pack_preload_failed"); throw error; });
+        };
+    }
+
+    window.catiatorsDiagnostics = {enabled, simpleHouse, stage, sample, prepare, bind};
+    if (recovery) {
+        const records = savedAttempts().slice(0, 2).map(item => item.value);
+        const latest = records[0];
+        const lastSample = latest && latest.samples.length ? latest.samples[latest.samples.length - 1] : null;
+        const panel = document.createElement("pre");
+        panel.style.cssText = "white-space:pre-wrap;overflow-wrap:anywhere;padding:24px;color:#fff;background:#171717;font:18px monospace;";
+        panel.textContent = "LOCAL STARTUP RECOVERY — engine not loaded; nothing uploaded\n" +
+            (latest ? "Last recorded stage: " + latest.last_stage + "\nRecorded build: " + latest.release +
+                "\nRecorded pack: " + latest.pack_bytes + " bytes\nLatest sample:\n" + JSON.stringify(lastSample, null, 2) + "\n\n" : "") +
+            "Current build: " + build.release + "\nCurrent pack: " + build.pack_bytes + " bytes\n" +
+            "An incomplete startup may mean a crash, navigation, or closing the tab. It is not proof of OOM.\n\n" +
+            "wasm_buffer_bytes measures the WASM buffer, not total physical memory. JS heap metrics are nonstandard, may be unavailable, and do not measure the browser sandbox limit.\n\n" +
+            (storageFailed ? "Local storage is unavailable.\n" : "") +
+            (records.length ? "Full local history:\n" + JSON.stringify(records, null, 2) : "No saved diagnostic attempt. Start once with ?diagnostics=1.");
+        document.body.replaceChildren(panel);
+        document.body.style.overflow = "auto";
+        document.body.style.touchAction = "auto";
+        return;
+    }
+    if (enabled) {
+        const random = new Uint32Array(2);
+        try { crypto.getRandomValues(random); } catch (_) { random[0] = Math.floor(Math.random() * 4294967296); }
+        const id = Date.now().toString(36) + "-" + [...random].map(value => value.toString(36)).join("-");
+        key = prefix + id;
+        attempt = {schema: 1, id, started: Date.now(), release: build.release, pack_bytes: build.pack_bytes,
+            render_720p: fixed720, house_simple: simpleHouse, title_reached: false, last_stage: phase, samples: []};
+        hud = document.createElement("pre");
+        hud.id = "catiators-diagnostics-hud";
+        hud.style.cssText = "position:fixed;left:8px;top:8px;z-index:2147483647;max-width:calc(100vw - 32px);max-height:200px;box-sizing:border-box;overflow:hidden;white-space:pre;background:#111e;color:#fff;margin:0;padding:8px;font:14px/18px monospace;pointer-events:none;";
+        document.body.appendChild(hud);
+        window.addEventListener("error", () => stage("javascript_error"));
+        window.addEventListener("unhandledrejection", () => stage("unhandled_rejection"));
+        const canvas = document.getElementById("canvas");
+        if (canvas) canvas.addEventListener("webglcontextlost", () => stage("webgl_context_lost"));
+        record();
+    }
+    const loader = document.createElement("script");
+    loader.src = document.getElementById("catiators-engine").getAttribute("data-engine-src");
+    loader.onload = () => {
+        stage("loader_ready");
+        const startup = document.createElement("script");
+        startup.textContent = document.getElementById("catiators-startup").textContent;
+        document.body.appendChild(startup);
+    };
+    loader.onerror = () => stage("loader_failed");
+    stage("loader_requested");
+    document.body.appendChild(loader);
+})();
+
+</script>
 	</body>
 </html>
 
