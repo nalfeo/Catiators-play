@@ -4,7 +4,9 @@
 
 ## Xbox crash diagnostics
 
-Current build: `d6c1ecb`. Performance diagnostics now show FPS, frame cap, focus/background state, engine frame and physics time, draw calls and primitives. Xbox Series X can reach gameplay but severe lag and a combat WebGL context-loss crash remain under investigation. This is a diagnostic update, not a confirmed frame-rate fix. The existing export-only resizing, compaction and unused-asset policy remains enforced.
+Current live build: `21540bf`. The checked performance-diagnostics build `d6c1ecb` is committed but **not deployed yet**: GitHub failed before starting jobs in [the deployment and retry](https://github.com/nalfeo/Catiators-play/actions/runs/43097439213) and [a fresh request](https://github.com/nalfeo/Catiators-play/actions/runs/43098107377). The links below will use the new build after deployment succeeds; until then they load the previous build.
+
+The pending build adds FPS, frame cap, focus/background state, engine frame and physics time, draw calls and primitives. Xbox Series X can reach gameplay but severe lag and a combat WebGL context-loss crash remain under investigation. This is a diagnostic update, not a confirmed frame-rate fix. The existing export-only resizing, compaction and unused-asset policy remains enforced.
 
 Open these links directly on your Xbox; no query strings to type.
 
