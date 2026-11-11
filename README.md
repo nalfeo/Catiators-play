@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `3de7508`, awaiting Pages deployment. Current live build remains `21540bf` until deployment and live hash verification succeed.
+Current live build: **`3de7508`**, deployed successfully in [Pages run 43107631883](https://github.com/nalfeo/Catiators-play/actions/runs/43107631883). All seven live game files match the checked local export.
 
 With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. The existing export asset policy remains enforced. Xbox Series X lag and the combat context-loss crash remain under investigation; no frame-rate fix is claimed.
 
