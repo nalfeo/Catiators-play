@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "6e7b8ef3822395a74ccf9397c337f0c6c261c08b",
+  "source_commit": "26194599a8acbeda8d6d71f42272485fde21ff12",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-12T05:34:28.760951+00:00",
+  "published_utc": "2026-11-12T06:05:16.316918+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@6e7b8ef3822395a74ccf9397c337f0c6c261c08b",
+    "release": "catiators@26194599a8acbeda8d6d71f42272485fde21ff12",
     "sentry": true
   },
-  "pack_sha256": "3df443af9affa5947b15570cc878fd479da4855cd429f36b0b5e6023c3ebd916",
+  "pack_sha256": "f03989df09cfa201673904698808b5469dde99f9ceb825409137517e4ec06faa",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261112T052139Z-dde53edb",
+    "report": "20261112T055512Z-baaf6a06",
     "result": "passed",
-    "followup_checks": "Configured checked local export, fresh engine and gameplay checks, six native room image/state comparisons and paired draw-call measurements. Actual Xbox retest and long-session throughput remain pending",
-    "engine_tests": 1938,
-    "python_tests": 682
+    "followup_checks": "Configured checked local export, fresh engine and gameplay checks, three imported-texture enemy image/state comparisons and draw-call measurements. Actual Xbox retest and long-session throughput remain pending",
+    "engine_tests": 1940,
+    "python_tests": 684
   }
 }
