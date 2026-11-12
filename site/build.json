@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "3de75082d3be2adbb62a237b25d58b5394f63de1",
+  "source_commit": "c5bb7b46944489ca274cec71d49d09d96e81df5c",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-11T21:57:13.976108+00:00",
+  "published_utc": "2026-11-12T00:07:17.537494+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@3de75082d3be2adbb62a237b25d58b5394f63de1",
+    "release": "catiators@c5bb7b46944489ca274cec71d49d09d96e81df5c",
     "sentry": true
   },
-  "pack_sha256": "ee4d5510c3a1b836ee01f81803c5a6a1fdf4333111d0a17ba0deedad42f36661",
+  "pack_sha256": "6c2d87e0cb055ad0318fd38f53a5577f67c4c68404ed5c906c4ccf61df63373c",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261111T212707Z-3fad0ef0",
+    "report": "20261111T235647Z-5a244cae",
     "result": "passed",
-    "followup_checks": "Configured checked export; consent and bounded PostHog diagnostics passed local component tests; browser ingestion evidence is recorded separately; Xbox throughput remains unverified",
-    "engine_tests": 1900,
+    "followup_checks": "Configured checked export; six exact native room image/state pairs and focused cache invalidation tests passed; actual Xbox throughput remains unverified",
+    "engine_tests": 1901,
     "python_tests": 680
   }
 }
