@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "build_version": "2026.11.11-dev",
+  "build_version": "2026.11.12-dev",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "preset": "Web",
   "mode": "release",
@@ -10,16 +10,16 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@26194599a8acbeda8d6d71f42272485fde21ff12",
+    "release": "catiators@a59c29b47c657d6a97355e41fd5cc160aa756865",
     "sentry": true
   },
   "asset_policy": {
     "schema": 1,
-    "policy_sha256": "77297efd8af1b28d2757514ab3f612120b0af41954b89bf86892224a5d39968e",
-    "files": 3324,
-    "excluded_images": 1119,
-    "resized_images": 207,
-    "pck_sha256": "f03989df09cfa201673904698808b5469dde99f9ceb825409137517e4ec06faa"
+    "policy_sha256": "1e44f89401d80fc499bf12b058f6c506a2fc5d978a3a2397990d3303b09985c8",
+    "files": 4753,
+    "excluded_images": 612,
+    "resized_images": 512,
+    "pck_sha256": "e3dd4c3d08e9366a2f512cad636929ca2d45d59163c65847644b8e205d4c52b1"
   },
   "files": {
     "index.audio.position.worklet.js": {
@@ -31,16 +31,16 @@
       "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
     },
     "index.html": {
-      "bytes": 28169,
-      "sha256": "aeca05999e45b8a412f389db4bbd8d77b715d0d2b80ad896fcb0710589707d79"
+      "bytes": 28767,
+      "sha256": "427107c11386d8f7023ea7daab51ca749e4395b2dc96b1e33f14bca8eaa76884"
     },
     "index.js": {
       "bytes": 280791,
       "sha256": "53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"
     },
     "index.pck": {
-      "bytes": 194652064,
-      "sha256": "f03989df09cfa201673904698808b5469dde99f9ceb825409137517e4ec06faa"
+      "bytes": 303953308,
+      "sha256": "e3dd4c3d08e9366a2f512cad636929ca2d45d59163c65847644b8e205d4c52b1"
     },
     "index.png": {
       "bytes": 2529562,
