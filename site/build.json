@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "01143dbccca28e29f00c87f0353be448369236e4",
+  "source_commit": "e836553c26f4d078a7a7ea29ea91c0ea034f1fe5",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-12T01:30:00.034302+00:00",
+  "published_utc": "2026-11-12T02:20:22.462938+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@01143dbccca28e29f00c87f0353be448369236e4",
+    "release": "catiators@e836553c26f4d078a7a7ea29ea91c0ea034f1fe5",
     "sentry": true
   },
-  "pack_sha256": "1addd4a627beb43a7c73a0c2561b9bfa09f451a3d9155ac9b7d6db86c8d37025",
+  "pack_sha256": "546110f9a064b7f25973984fd8abd4387718ec8648cfe75fc1c023bd3b0f91b1",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261112T011837Z-20ada026",
+    "report": "20261112T020620Z-b0d6c1ab",
     "result": "passed",
-    "followup_checks": "Configured checked export; eleven exact arena/shadow image pairs, actual redraw regression tests and normal scheduled human/bot headless replay comparisons passed; actual Xbox throughput remains unverified",
-    "engine_tests": 1905,
+    "followup_checks": "Configured checked export; three exact earned arena/shadow image pairs, catch-up redraw regression tests and eight normal scheduled human/bot headless replay comparisons passed; actual Xbox throughput remains unverified",
+    "engine_tests": 1908,
     "python_tests": 680
   }
 }
