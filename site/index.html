@@ -101,7 +101,14 @@ body {
 			Your browser does not support JavaScript.
 		</noscript>
 
-		<div id="status"><div id="build-version" style="position:fixed;left:24px;bottom:18px;color:#fff1cf;font:18px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.11-dev</div>
+		<style>
+#status-splash.fullsize--true { bottom:112px; height:calc(100% - 112px); }
+#status-progress { bottom:90px; z-index:2; }
+#loading-explanation { position:absolute; bottom:42px; left:24px; right:24px;
+    color:#fff1cf; font:clamp(12px,2.2vh,18px)/1.4 sans-serif; text-align:center;
+    z-index:3; }
+#status-notice { position:relative; z-index:4; }
+</style><div id="status"><div id="build-version" style="position:absolute;left:24px;bottom:12px;z-index:3;color:#fff1cf;font:16px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.11-dev</div><div id="loading-explanation" role="status">Downloading the game, then preparing the arena. The first visit can take longer.</div>
 			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
@@ -109,9 +116,9 @@ body {
 
 		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194513620,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194518832,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=ed76210fbd0b8138e13893e5d750c4ba5e03b1f110b95d55d0cf97a1bd263343";
+const GAME_PACK_URL = "index.pck?v=3df443af9affa5947b15570cc878fd479da4855cd429f36b0b5e6023c3ebd916";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -245,10 +252,10 @@ window.catiatorsDiagnostics.stage("feature_missing");
 		
 </script>
 <script>
-/* Opt-in startup diagnostics. Hosted samples use the consent-gated game recorder. */
+/* Local recovery breadcrumbs; opt-in counters share through the consent-gated recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@d901b649eb06e8cb19bbeced440b06a6983df0b0", "pack_bytes": 194513620};
+    const build = {"release": "catiators@6e7b8ef3822395a74ccf9397c337f0c6c261c08b", "pack_bytes": 194518832};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
@@ -262,11 +269,11 @@ window.catiatorsDiagnostics.stage("feature_missing");
     const stages = new Set(["html_ready", "loader_requested", "loader_ready", "loader_failed",
         "engine_constructing", "engine_init_requested", "engine_init_resolved", "engine_init_failed",
         "runtime_start_requested", "runtime_start_resolved", "start_game_requested", "start_game_resolved",
-        "startup_failed", "pack_preload_requested", "pack_preload_resolved", "pack_preload_failed",
+        "startup_failed", "page_hidden", "page_left", "pack_preload_requested", "pack_preload_resolved", "pack_preload_failed",
         "javascript_error", "unhandled_rejection", "webgl_context_lost", "feature_missing",
         "autoload_ready", "main_ready", "sprites_before", "sprites_after", "cat_bundle_before", "cat_bundle_after",
         "arena_before", "arena_after", "audio_before", "audio_after", "title_before", "title_after", "first_frame",
-        "title_first_frame", "house_home_begin", "house_home_add_child", "house_home_configure", "house_home_ready",
+        "run_combat", "run_intermission", "run_paused", "run_defeat", "run_slice_complete", "title_first_frame", "house_home_begin", "house_home_add_child", "house_home_configure", "house_home_ready",
         "house_cat_metadata_before", "house_cat_metadata_after", "house_cat_texture_before", "house_cat_texture_after"]);
     let storageFailed = false;
     let hud = null;
@@ -400,9 +407,9 @@ window.catiatorsDiagnostics.stage("feature_missing");
     }
 
     function record(reason = "sample") {
-        if (!enabled || !attempt) return;
-        const heap = boundEngine && boundEngine.rtenv && boundEngine.rtenv.HEAPU8;
-        const memory = performance.memory;
+        if (!attempt) return;
+        const heap = enabled && boundEngine && boundEngine.rtenv && boundEngine.rtenv.HEAPU8;
+        const memory = enabled ? performance.memory : null;
         const browserMemory = {
             page_focused: document.hasFocus(),
             page_hidden: document.hidden,
@@ -412,8 +419,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
             js_heap_limit_bytes: memory && finite(memory.jsHeapSizeLimit) ? memory.jsHeapSizeLimit : null,
         };
         const now = Math.round(performance.now());
-        const latest = {ms: now, stage: phase, ...dimensions(), ...counters, ...browserMemory,
-            engine_sample_age_ms: engineSampleMs === null ? null : Math.max(0, now - engineSampleMs)};
+        const latest = {ms: now, stage: phase, ...(enabled ? {...dimensions(), ...counters, ...browserMemory,
+            engine_sample_age_ms: engineSampleMs === null ? null : Math.max(0, now - engineSampleMs)} : {})};
         attempt.samples.push(latest);
         attempt.samples = attempt.samples.slice(-32);
         attempt.last_stage = phase;
@@ -424,8 +431,12 @@ window.catiatorsDiagnostics.stage("feature_missing");
     }
 
     function stage(name) {
-        if (!enabled || !validStage(name)) return;
+        if (!validStage(name)) return;
         phase = name;
+        if (attempt && ["javascript_error", "unhandled_rejection", "webgl_context_lost",
+            "startup_failed", "engine_init_failed", "loader_failed", "pack_preload_failed"].includes(name)) {
+            attempt.last_failure = name;
+        }
         record(errors.has(name) ? "error" : "sample");
     }
 
@@ -457,25 +468,37 @@ window.catiatorsDiagnostics.stage("feature_missing");
         record();
     }
 
+    function layout() {
+        const canvas = document.getElementById("canvas");
+        if (!canvas || (!enabled && !fixed720)) return;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const reserved = enabled ? Math.min(190, Math.floor(height * 0.32)) : 0;
+        const scale = Math.min(width / 1280, Math.max(1, height - reserved) / 720);
+        const w = Math.floor(1280 * scale);
+        const h = Math.floor(720 * scale);
+        canvas.style.cssText = "position:fixed;left:" + Math.floor((width - w) / 2) +
+            "px;top:" + (reserved + Math.floor((height - reserved - h) / 2)) +
+            "px;width:" + w + "px;height:" + h + "px;";
+        const ratio = fixed720 ? 1 : (window.devicePixelRatio || 1);
+        const bufferWidth = fixed720 ? 1280 : Math.round(w * ratio);
+        const bufferHeight = fixed720 ? 720 : Math.round(h * ratio);
+        if (canvas.width !== bufferWidth) canvas.width = bufferWidth;
+        if (canvas.height !== bufferHeight) canvas.height = bufferHeight;
+        if (hud) hud.style.height = reserved + "px";
+    }
+
     function prepare(config) {
-        if (fixed720) {
+        if (fixed720 || enabled) {
             config.canvasResizePolicy = 0;
-            const canvas = document.getElementById("canvas");
-            if (canvas) {
-                canvas.width = 1280;
-                canvas.height = 720;
-                canvas.style.width = "1280px";
-                canvas.style.height = "720px";
-                canvas.style.maxWidth = "100vw";
-                canvas.style.maxHeight = "100vh";
-                canvas.style.objectFit = "contain";
-            }
+            layout();
+            window.addEventListener("resize", layout);
+            document.addEventListener("fullscreenchange", layout);
         }
         stage("engine_constructing");
     }
 
     function bind(engine) {
-        if (!enabled) return;
         boundEngine = engine;
         for (const [method, before, after] of [
             ["init", "engine_init_requested", "engine_init_resolved"],
@@ -512,34 +535,69 @@ window.catiatorsDiagnostics.stage("feature_missing");
         panel.style.cssText = "white-space:pre-wrap;overflow-wrap:anywhere;padding:24px;color:#fff;background:#171717;font:18px monospace;";
         panel.textContent = "LOCAL STARTUP RECOVERY — engine not loaded; this page sends nothing\n" +
             (latest ? "Last recorded stage: " + latest.last_stage + "\nRecorded build: " + latest.release +
-                "\nRecorded pack: " + latest.pack_bytes + " bytes\nLatest sample:\n" + JSON.stringify(lastSample, null, 2) + "\n\n" : "") +
+                "\nLast failure marker: " + (latest.last_failure || "none recorded") + "\nRecorded pack: " + latest.pack_bytes + " bytes\nLatest sample:\n" + JSON.stringify(lastSample, null, 2) + "\n\n" : "") +
             "Current build: " + build.release + "\nCurrent pack: " + build.pack_bytes + " bytes\n" +
             "An incomplete startup may mean a crash, navigation, or closing the tab. It is not proof of OOM.\n\n" +
             "wasm_buffer_bytes measures the WASM buffer, not total physical memory. JS heap metrics are nonstandard, may be unavailable, and do not measure the browser sandbox limit.\n\n" +
             (storageFailed ? "Local storage is unavailable.\n" : "") +
-            (records.length ? "Full local history:\n" + JSON.stringify(records, null, 2) : "No saved diagnostic attempt. Start once with ?diagnostics=1.");
+            (records.length ? "Full local history:\n" + JSON.stringify(records, null, 2) : "No saved recovery attempt in this browser.");
         document.body.replaceChildren(panel);
         document.body.style.overflow = "auto";
         document.body.style.touchAction = "auto";
+        const download = document.createElement("button");
+        download.textContent = "Download recovery record";
+        download.onclick = () => {
+            const url = URL.createObjectURL(new Blob([JSON.stringify(records, null, 2)], {type: "application/json"}));
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "catiators-browser-recovery.json";
+            link.click();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        };
+        document.body.prepend(download);
         return;
     }
-    if (enabled) {
+    {
         const random = new Uint32Array(2);
         try { crypto.getRandomValues(random); } catch (_) { random[0] = Math.floor(Math.random() * 4294967296); }
         const id = Date.now().toString(36) + "-" + [...random].map(value => value.toString(36)).join("-");
         key = prefix + id;
         attempt = {schema: 1, id, started: Date.now(), release: build.release, pack_bytes: build.pack_bytes,
-            render_720p: fixed720, house_simple: simpleHouse, title_reached: false, last_stage: phase, samples: []};
-        hud = document.createElement("pre");
-        hud.id = "catiators-diagnostics-hud";
-        hud.style.cssText = "position:fixed;left:8px;top:8px;z-index:2147483647;max-width:calc(100vw - 32px);max-height:280px;box-sizing:border-box;overflow:hidden;white-space:pre;background:#111e;color:#fff;margin:0;padding:8px;font:14px/18px monospace;pointer-events:none;";
-        document.body.appendChild(hud);
+            render_720p: fixed720, house_simple: simpleHouse, detailed: enabled, title_reached: false, last_stage: phase, samples: []};
+        if (enabled) {
+            hud = document.createElement("pre");
+            hud.id = "catiators-diagnostics-hud";
+            hud.style.cssText = "position:fixed;left:0;top:0;z-index:10;width:100%;box-sizing:border-box;overflow:auto;white-space:pre-wrap;background:#111;color:#fff;margin:0;padding:8px;font:14px/18px monospace;touch-action:pan-y;";
+            document.body.appendChild(hud);
+        }
         window.addEventListener("error", () => stage("javascript_error"));
         window.addEventListener("unhandledrejection", () => stage("unhandled_rejection"));
         const canvas = document.getElementById("canvas");
         if (canvas) canvas.addEventListener("webglcontextlost", () => stage("webgl_context_lost"));
+        window.addEventListener("pagehide", () => stage("page_left"));
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden") stage("page_hidden");
+        });
         record();
     }
+    window.catiatorsRequestFullscreen = () => {
+        if (!document.fullscreenEnabled || !document.documentElement.requestFullscreen) return;
+        const id = "catiators-fullscreen-help";
+        const clear = () => document.getElementById(id)?.remove();
+        const rejected = () => {
+            clear();
+            const help = document.createElement("button");
+            help.id = id;
+            help.textContent = "Browser needs a click or tap for full screen. Click here to try again.";
+            help.style.cssText = "position:fixed;bottom:12px;left:5%;width:90%;z-index:20;padding:12px;color:#fff1cf;background:#30204f;font:18px sans-serif;";
+            help.onclick = () => window.catiatorsRequestFullscreen();
+            document.body.appendChild(help);
+            setTimeout(() => help.remove(), 10000);
+        };
+        try {
+            Promise.resolve(document.documentElement.requestFullscreen()).then(clear, rejected);
+        } catch (_) { rejected(); }
+    };
     const loader = document.createElement("script");
     loader.src = document.getElementById("catiators-engine").getAttribute("data-engine-src");
     loader.onload = () => {

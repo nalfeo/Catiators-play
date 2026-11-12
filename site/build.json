@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "d901b649eb06e8cb19bbeced440b06a6983df0b0",
+  "source_commit": "6e7b8ef3822395a74ccf9397c337f0c6c261c08b",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-12T04:42:03.170003+00:00",
+  "published_utc": "2026-11-12T05:34:28.760951+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@d901b649eb06e8cb19bbeced440b06a6983df0b0",
+    "release": "catiators@6e7b8ef3822395a74ccf9397c337f0c6c261c08b",
     "sentry": true
   },
-  "pack_sha256": "ed76210fbd0b8138e13893e5d750c4ba5e03b1f110b95d55d0cf97a1bd263343",
+  "pack_sha256": "3df443af9affa5947b15570cc878fd479da4855cd429f36b0b5e6023c3ebd916",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261112T042934Z-3efa615b",
+    "report": "20261112T052139Z-dde53edb",
     "result": "passed",
-    "followup_checks": "Configured checked export and fresh merged engine/smoke checks. Full restoration, earned image checks and six scheduled replay comparisons passed before the balance merge; actual Xbox throughput and long-session acceptance remain unverified",
-    "engine_tests": 1931,
+    "followup_checks": "Configured checked local export, fresh engine and gameplay checks, six native room image/state comparisons and paired draw-call measurements. Actual Xbox retest and long-session throughput remain pending",
+    "engine_tests": 1938,
     "python_tests": 682
   }
 }
