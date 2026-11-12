@@ -109,9 +109,9 @@ body {
 
 		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194499144,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194513620,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=b979e108e0c53d138af4f89ab3f868382fdd77941c6b7bfbce16f7674a6e4c90";
+const GAME_PACK_URL = "index.pck?v=ed76210fbd0b8138e13893e5d750c4ba5e03b1f110b95d55d0cf97a1bd263343";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -248,7 +248,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Opt-in startup diagnostics. Hosted samples use the consent-gated game recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@4f2d86f1a127a5e5a15e18c765c1999321725f7f", "pack_bytes": 194499144};
+    const build = {"release": "catiators@d901b649eb06e8cb19bbeced440b06a6983df0b0", "pack_bytes": 194513620};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
@@ -257,7 +257,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
     const prefix = "catiators.startup-diagnostics.v1.";
     const counterNames = ["fps", "fps_cap", "frame_ms", "physics_ms", "draw_calls", "primitives",
         "objects", "nodes", "resources", "texture_bytes", "render_bytes",
-        "static_bytes", "viewport_width", "viewport_height"];
+        "static_bytes", "viewport_width", "viewport_height", "quality_tier", "quality_changes",
+        "quality_sample_fps", "quality_target_fps"];
     const stages = new Set(["html_ready", "loader_requested", "loader_ready", "loader_failed",
         "engine_constructing", "engine_init_requested", "engine_init_resolved", "engine_init_failed",
         "runtime_start_requested", "runtime_start_resolved", "start_game_requested", "start_game_resolved",
@@ -350,6 +351,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
             "Focus: engine " + flag(latest.window_focused) + " | page " + flag(latest.page_focused) +
                 " | hidden " + flag(latest.page_hidden),
             "Engine ms: frame " + millis(latest.frame_ms) + " | physics " + millis(latest.physics_ms),
+            "Quality: " + (latest.quality_mode || "n/a") + " | tier: " + count(latest.quality_tier) +
+                " | " + (latest.quality_reason || "n/a"),
             "Draw calls: " + count(latest.draw_calls) + " | primitives: " + count(latest.primitives),
             "MiB: WASM " + mib(latest.wasm_buffer_bytes) + " | render " + mib(latest.render_bytes) +
                 " | texture " + mib(latest.texture_bytes),
@@ -388,7 +391,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
         const current = {...latest};
         if (engineSampleGeneration <= sharingSampleGeneration) {
             for (const field of [...counterNames, "window_focused", "background_limited",
-                "static_memory_supported", "scene", "engine_sample_age_ms"]) delete current[field];
+                "static_memory_supported", "scene", "engine_sample_age_ms", "quality_mode", "quality_reason"]) delete current[field];
         }
         try {
             telemetrySink(JSON.stringify({diagnostic_schema: 1, reason, pack_bytes: build.pack_bytes,
@@ -449,6 +452,8 @@ window.catiatorsDiagnostics.stage("feature_missing");
             counters.static_memory_supported = value.static_memory_supported;
         }
         if (value.scene === "main.tscn" || value.scene === "unavailable") counters.scene = value.scene;
+        if (["auto", "full", "performance", "unavailable"].includes(value.quality_mode)) counters.quality_mode = value.quality_mode;
+        if (["initial", "manual", "sustained_slow_frames", "recovery_trial", "unavailable"].includes(value.quality_reason)) counters.quality_reason = value.quality_reason;
         record();
     }
 

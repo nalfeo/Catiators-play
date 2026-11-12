@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "4f2d86f1a127a5e5a15e18c765c1999321725f7f",
+  "source_commit": "d901b649eb06e8cb19bbeced440b06a6983df0b0",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-12T03:04:55.911344+00:00",
+  "published_utc": "2026-11-12T04:42:03.170003+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@4f2d86f1a127a5e5a15e18c765c1999321725f7f",
+    "release": "catiators@d901b649eb06e8cb19bbeced440b06a6983df0b0",
     "sentry": true
   },
-  "pack_sha256": "b979e108e0c53d138af4f89ab3f868382fdd77941c6b7bfbce16f7674a6e4c90",
+  "pack_sha256": "ed76210fbd0b8138e13893e5d750c4ba5e03b1f110b95d55d0cf97a1bd263343",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261112T025243Z-9c097feb",
+    "report": "20261112T042934Z-3efa615b",
     "result": "passed",
-    "followup_checks": "Configured checked export; three exact earned arena/shadow image pairs, equipment mutation/copy regressions and four paired normal scheduled workloads with complete headless replay passed; actual Xbox throughput remains unverified",
-    "engine_tests": 1910,
-    "python_tests": 680
+    "followup_checks": "Configured checked export and fresh merged engine/smoke checks. Full restoration, earned image checks and six scheduled replay comparisons passed before the balance merge; actual Xbox throughput and long-session acceptance remain unverified",
+    "engine_tests": 1931,
+    "python_tests": 682
   }
 }
