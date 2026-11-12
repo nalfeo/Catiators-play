@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `e836553`, awaiting Pages deployment. Current live build remains `01143db` until deployment and live hash verification succeed.
+Current live build: **`e836553`**, deployed successfully in [Pages run 43140796492](https://github.com/nalfeo/Catiators-play/actions/runs/43140796492). All seven live game files match the checked local export.
 
 With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. Combat rendering now rebuilds once after physics catch-up instead of eight or nine times per displayed frame, preserving every simulation tick. In a four-cat wave 10 native script-backend window, FPS rose from 4.7 to 33.3; stable 60 FPS remains unmet. Three before/after earned arena and shadow images match exactly. The earlier shadow, cat-layer and House Home CPU improvements and export asset policy remain included. Actual Xbox speedup, combat lag and context-loss acceptance remain unverified.
 
