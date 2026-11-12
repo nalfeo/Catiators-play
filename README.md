@@ -4,7 +4,7 @@
 
 ## Xbox Series X testing
 
-Build `a59c29b` is queued for Pages. The previous live build was `2619459`.
+Build `a59c29b` is live. [Pages deployment](https://github.com/nalfeo/Catiators-play/actions/runs/43268874460).
 
 - [Play at 720p with Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&test_device=xbox_series_x&build=a59c29b)
 - [Play with normal resolution and Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&test_device=xbox_series_x&build=a59c29b)
