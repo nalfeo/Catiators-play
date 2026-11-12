@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `c5bb7b4`, awaiting Pages deployment. Current live build remains `3de7508` until deployment and live hash verification succeed.
+Current live build: **`c5bb7b4`**, deployed successfully in [Pages run 43125004075](https://github.com/nalfeo/Catiators-play/actions/runs/43125004075). All seven live game files match the checked local export.
 
 With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. House Home now retains unchanged floor, wall and column drawing commands. Matched native room probes showed lower median and p95 frame times with identical rendered pixels. Actual Xbox speedup, combat lag and context-loss acceptance remain unverified. The existing export asset policy remains enforced.
 
