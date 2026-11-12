@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `6e7b8ef`, awaiting Pages deployment. Current live build remains `d901b64` until deployment and live hash verification succeed.
+Current live build: **`6e7b8ef`**, deployed successfully in [Pages run 43162382862](https://github.com/nalfeo/Catiators-play/actions/runs/43162382862). All seven live game files match the checked local export.
 
 House Home now batches its static floor and architecture: 249 fewer draw calls in the matched three-cat native room measurement (about 62% fewer overall). All cats, fitted clothing, authored activity animations, furniture and shadows remain. This applies in every visual-quality mode; Auto still adapts combat decoration only. Actual Xbox FPS needs a fresh test.
 
