@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `4f2d86f`, awaiting Pages deployment. Current live build remains `e836553` until deployment and live hash verification succeed.
+Current live build: **`4f2d86f`**, deployed successfully in [Pages run 43146137388](https://github.com/nalfeo/Catiators-play/actions/runs/43146137388). All seven live game files match the checked local export.
 
 With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. Cat appearance and weapon preparation now reuse a local equipment lookup, and animated combat skips an unused legacy appearance pass. An adjacent four-human-cat wave 10 native test improved from 33.1 to 41.6 FPS, with median measured CPU falling from 22.3 to 16.6 ms; stable co-op 60 FPS remains unmet. Four paired workloads preserve complete headless state, and three arena/shadow image pairs match exactly. The earlier catch-up redraw, shadow, cat-layer and House Home CPU improvements and export asset policy remain included. Actual Xbox speedup, combat lag and context-loss acceptance remain unverified.
 
