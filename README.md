@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `2619459`, awaiting Pages deployment. Current live build remains `6e7b8ef` until deployment and live hash verification succeed.
+Current live build: **`2619459`**, deployed successfully in [Pages run 43166071807](https://github.com/nalfeo/Catiators-play/actions/runs/43166071807). All seven live game files match the checked local export.
 
 Arena enemies now share a texture with their contact shadows, prepared automatically during export. In native fixtures using the exported textures, 120 rats dropped from 240 to 1 draw call; mixed rats/hares/toads from 240 to 36; overlapping enemies with authored art and status indicators from 279 to 108. All three rendered comparisons differ by at most one colour level and preserve fixture state. These are component measurements, not Xbox FPS claims. The previous House Home batching remains included. This applies in every visual-quality mode; Auto still adapts combat decoration only. Actual Xbox FPS needs a fresh test.
 
