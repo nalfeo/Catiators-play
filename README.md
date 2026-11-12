@@ -4,16 +4,16 @@
 
 ## Xbox crash diagnostics
 
-Current live build: **`e836553`**, deployed successfully in [Pages run 43140796492](https://github.com/nalfeo/Catiators-play/actions/runs/43140796492). All seven live game files match the checked local export.
+Candidate build: `4f2d86f`, awaiting Pages deployment. Current live build remains `e836553` until deployment and live hash verification succeed.
 
-With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. Combat rendering now rebuilds once after physics catch-up instead of eight or nine times per displayed frame, preserving every simulation tick. In a four-cat wave 10 native script-backend window, FPS rose from 4.7 to 33.3; stable 60 FPS remains unmet. Three before/after earned arena and shadow images match exactly. The earlier shadow, cat-layer and House Home CPU improvements and export asset policy remain included. Actual Xbox speedup, combat lag and context-loss acceptance remain unverified.
+With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. Cat appearance and weapon preparation now reuse a local equipment lookup, and animated combat skips an unused legacy appearance pass. An adjacent four-human-cat wave 10 native test improved from 33.1 to 41.6 FPS, with median measured CPU falling from 22.3 to 16.6 ms; stable co-op 60 FPS remains unmet. Four paired workloads preserve complete headless state, and three arena/shadow image pairs match exactly. The earlier catch-up redraw, shadow, cat-layer and House Home CPU improvements and export asset policy remain included. Actual Xbox speedup, combat lag and context-loss acceptance remain unverified.
 
 Open these links directly on your Xbox; no query strings to type.
 
-- **[Test at 720p: FPS and memory diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&build=e836553)** — start here, then select Play on the title screen.
-- **[Read the last crash trace](https://nalfeo.github.io/Catiators-play/?diagnostics=read&build=e836553)** — after a crash, reopen Edge and use this link on the same Xbox. It shows saved diagnostics without loading the game.
-- [Compare: 720p with simpler house cats](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&house_simple=1&build=e836553).
-- [Compare: normal rendering with diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&build=e836553).
+- **[Test at 720p: FPS and memory diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&build=4f2d86f)** — start here, then select Play on the title screen.
+- **[Read the last crash trace](https://nalfeo.github.io/Catiators-play/?diagnostics=read&build=4f2d86f)** — after a crash, reopen Edge and use this link on the same Xbox. It shows saved diagnostics without loading the game.
+- [Compare: 720p with simpler house cats](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&house_simple=1&build=4f2d86f).
+- [Compare: normal rendering with diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&build=4f2d86f).
 
 These links run the same published build with different diagnostic settings. The overlay shows FPS, frame cap, focus/background state, engine frame/physics milliseconds, draw calls and memory. Take a photo while lagging in the house and combat; these counters help separate browser pacing, simulation and rendering work. Local traces stay in this browser. Choose Share telemetry at first launch, or enable sharing in Settings → Feedback, to send future diagnostic samples to PostHog. The overlay shows whether sharing is enabled. Existing saved traces and pre-consent samples are never uploaded; the recovery page sends nothing. Queued events are not proof of delivery, and a browser kill can prevent the last sample arriving. If it crashes, share a photo of the recovery page's **Last recorded stage** and **Latest sample**. Do not clear site data before opening recovery.
 
