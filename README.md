@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `d901b64`, awaiting Pages deployment. Current live build remains `4f2d86f` until deployment and live hash verification succeed.
+Current live build: **`d901b64`**, deployed successfully in [Pages run 43156575314](https://github.com/nalfeo/Catiators-play/actions/runs/43156575314). All seven live game files match the checked local export.
 
 Visual quality now defaults to **Auto**. It starts with full visuals and steps down decoration during sustained foreground combat slowdown: blood/crowd motion, projected shadows, then dynamic lighting. It restores quality slowly and ignores paused/background time. Use **Settings → Visual quality → Performance** for the cheapest tier immediately, or **Full** to keep authored effects. Character/weapon animation, hazards, gameplay and saves remain independent of quality. The earlier CPU fixes remain included. Native earned-window comparisons and complete headless replay passed before the latest balance merge; the combined build passed fresh engine and gameplay checks. Actual Xbox speedup, long-session recovery and stable co-op 60 FPS remain unverified.
 
