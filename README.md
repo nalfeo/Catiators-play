@@ -4,7 +4,7 @@
 
 ## Xbox crash diagnostics
 
-Candidate build: `281895c`, awaiting Pages deployment. Current live build remains `c5bb7b4` until deployment and live hash verification succeed.
+Current live build: **`281895c`**, deployed successfully in [Pages run 43130467789](https://github.com/nalfeo/Catiators-play/actions/runs/43130467789). All seven live game files match the checked local export.
 
 With diagnostics and telemetry sharing enabled, this build sends `catiators_web_diagnostics` to PostHog at most once per ten seconds, plus bounded error markers. The payload includes FPS, frame cap, focus/background state, engine/physics time, draw calls, memory counters and build/view context. Cat rendering now shares its selected layers between clipping and depth ordering within each draw. In a four-player native probe, layer-selection calls halved and median selection CPU fell from 0.56 to 0.29 ms; whole-frame improvement was not established. Eight before/after cat images match exactly. The previous House Home drawing optimization and export asset policy remain included. Actual Xbox speedup, combat lag and context-loss acceptance remain unverified.
 
