@@ -116,9 +116,9 @@ body {
 
 		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":303953308,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":304578940,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=e3dd4c3d08e9366a2f512cad636929ca2d45d59163c65847644b8e205d4c52b1";
+const GAME_PACK_URL = "index.pck?v=d10636c8b800275b0815ad01b89dbf2ec1efb98dcaf0d99c22bf9176016587f4";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -255,7 +255,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Local recovery breadcrumbs; opt-in counters share through the consent-gated recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@a59c29b47c657d6a97355e41fd5cc160aa756865", "pack_bytes": 303953308};
+    const build = {"release": "catiators@7c58d8c07737a93583398fc20284002d82b581ed", "pack_bytes": 304578940};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
@@ -268,7 +268,10 @@ window.catiatorsDiagnostics.stage("feature_missing");
         "objects", "nodes", "resources", "texture_bytes", "render_bytes",
         "static_bytes", "viewport_width", "viewport_height", "quality_tier", "quality_changes",
         "quality_sample_fps", "quality_target_fps", "frame_window_samples",
-        "frame_interval_p95_ms", "frame_interval_max_ms", "frame_intervals_over_33_ms"];
+        "frame_interval_p50_ms", "frame_interval_p95_ms", "frame_interval_p99_ms",
+        "frame_interval_max_ms", "frame_intervals_over_33_ms",
+        "simulation_tick", "active_party_size", "enemy_count", "projectile_count",
+        "retained_event_count", "house_resident_count"];
     const stages = new Set(["html_ready", "loader_requested", "loader_ready", "loader_failed",
         "engine_constructing", "engine_init_requested", "engine_init_resolved", "engine_init_failed",
         "runtime_start_requested", "runtime_start_resolved", "start_game_requested", "start_game_resolved",
@@ -361,7 +364,9 @@ window.catiatorsDiagnostics.stage("feature_missing");
             "Focus: engine " + flag(latest.window_focused) + " | page " + flag(latest.page_focused) +
                 " | hidden " + flag(latest.page_hidden),
             "Engine ms: frame " + millis(latest.frame_ms) + " | physics " + millis(latest.physics_ms),
-            "Frame interval ms: p95 " + millis(latest.frame_interval_p95_ms) +
+            "Frame interval ms: p50 " + millis(latest.frame_interval_p50_ms) +
+                " | p95 " + millis(latest.frame_interval_p95_ms) +
+                " | p99 " + millis(latest.frame_interval_p99_ms) +
                 " | max " + millis(latest.frame_interval_max_ms) +
                 " | >33 ms " + count(latest.frame_intervals_over_33_ms) +
                 "/" + count(latest.frame_window_samples),
@@ -376,6 +381,15 @@ window.catiatorsDiagnostics.stage("feature_missing");
             "Modes: 720p " + (fixed720 ? "on" : "off") + " | house " + (simpleHouse ? "simple" : "normal"),
             "Recovery: ?diagnostics=read",
         ];
+        if (finite(latest.simulation_tick)) {
+            lines.splice(9, 0, "Combat: tick " + count(latest.simulation_tick) +
+                " | cats " + count(latest.active_party_size) +
+                " | enemies " + count(latest.enemy_count) +
+                " | projectiles " + count(latest.projectile_count) +
+                " | events " + count(latest.retained_event_count));
+        } else if (finite(latest.house_resident_count)) {
+            lines.splice(9, 0, "House residents: " + count(latest.house_resident_count));
+        }
         if (storageFailed) lines.push("Storage unavailable; trace may not survive.");
         hud.textContent = lines.join("\n");
     }

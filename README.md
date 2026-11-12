@@ -4,17 +4,17 @@
 
 ## Xbox Series X testing
 
-Build `a59c29b` is live. [Pages deployment](https://github.com/nalfeo/Catiators-play/actions/runs/43268874460).
+Build `7c58d8c` is queued for Pages deployment.
 
-- [Play at 720p with Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&test_device=xbox_series_x&build=a59c29b)
-- [Play with normal resolution and Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&test_device=xbox_series_x&build=a59c29b)
-- [Compare simpler House cats at 720p](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&house_simple=1&test_device=xbox_series_x&build=a59c29b)
-- [Read the last crash trace](https://nalfeo.github.io/Catiators-play/?diagnostics=read&build=a59c29b)
-- [Run the 720p rendering benchmark](https://nalfeo.github.io/Catiators-play/?render_benchmark=1&render_720p=1&benchmark_long=1&build=a59c29b)
+- [Play at 720p with Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&test_device=xbox_series_x&build=7c58d8c)
+- [Play with normal resolution and Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&test_device=xbox_series_x&build=7c58d8c)
+- [Compare simpler House cats at 720p](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&house_simple=1&test_device=xbox_series_x&build=7c58d8c)
+- [Read the last crash trace](https://nalfeo.github.io/Catiators-play/?diagnostics=read&build=7c58d8c)
+- [Run the 720p rendering benchmark](https://nalfeo.github.io/Catiators-play/?render_benchmark=1&render_720p=1&benchmark_long=1&build=7c58d8c)
 
 Start with the first link. Try House Home, then a new run through combat. The
-overlay shows FPS, focus, canvas size, visual tier, draw calls, and p95 and
-maximum engine frame intervals. Use **Settings → Visual quality** to compare
+overlay shows FPS, focus, canvas size, visual tier, draw calls, frame
+intervals, and combat or House workload counts. Use **Settings → Visual quality** to compare
 Auto, Full, and Performance at the same resolution. Auto adapts House
 animation as well as arena effects.
 
