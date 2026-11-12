@@ -4,7 +4,7 @@
 
 ## Xbox Series X testing
 
-Build `7c58d8c` is queued for Pages deployment.
+Build `7c58d8c` is live. [Pages deployment](https://github.com/nalfeo/Catiators-play/actions/runs/43310800807).
 
 - [Play at 720p with Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&test_device=xbox_series_x&build=7c58d8c)
 - [Play with normal resolution and Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&test_device=xbox_series_x&build=7c58d8c)
