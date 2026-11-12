@@ -1,23 +1,23 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "c5bb7b46944489ca274cec71d49d09d96e81df5c",
+  "source_commit": "281895c53e8f1c68f89649674899399b5eca6fd7",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-12T00:07:17.537494+00:00",
+  "published_utc": "2026-11-12T00:50:57.385401+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@c5bb7b46944489ca274cec71d49d09d96e81df5c",
+    "release": "catiators@281895c53e8f1c68f89649674899399b5eca6fd7",
     "sentry": true
   },
-  "pack_sha256": "6c2d87e0cb055ad0318fd38f53a5577f67c4c68404ed5c906c4ccf61df63373c",
+  "pack_sha256": "e6ba6af8ebb987367628a25f0530a6fc1f6d99c48cb30b4489f99d9f7be6839d",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261111T235647Z-5a244cae",
+    "report": "20261112T003905Z-ced9d82c",
     "result": "passed",
-    "followup_checks": "Configured checked export; six exact native room image/state pairs and focused cache invalidation tests passed; actual Xbox throughput remains unverified",
-    "engine_tests": 1901,
+    "followup_checks": "Configured checked export; eight exact native cat image pairs, corrected moving human workloads and rendered/headless state comparisons passed; actual Xbox throughput remains unverified",
+    "engine_tests": 1904,
     "python_tests": 680
   }
 }

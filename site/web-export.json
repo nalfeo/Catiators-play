@@ -10,7 +10,7 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@c5bb7b46944489ca274cec71d49d09d96e81df5c",
+    "release": "catiators@281895c53e8f1c68f89649674899399b5eca6fd7",
     "sentry": true
   },
   "asset_policy": {
@@ -19,7 +19,7 @@
     "files": 3318,
     "excluded_images": 1119,
     "resized_images": 129,
-    "pck_sha256": "6c2d87e0cb055ad0318fd38f53a5577f67c4c68404ed5c906c4ccf61df63373c"
+    "pck_sha256": "e6ba6af8ebb987367628a25f0530a6fc1f6d99c48cb30b4489f99d9f7be6839d"
   },
   "files": {
     "index.audio.position.worklet.js": {
@@ -32,15 +32,15 @@
     },
     "index.html": {
       "bytes": 23974,
-      "sha256": "0ff753965b98d01554b28e8c1e2a8a2b675bd53ed2fb2fcae5bdc4f87fe309b8"
+      "sha256": "9ac4981c2b009817c1136e3c10090c143fceddc036fb910b7ba5c3bbde159083"
     },
     "index.js": {
       "bytes": 280791,
       "sha256": "53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"
     },
     "index.pck": {
-      "bytes": 194498504,
-      "sha256": "6c2d87e0cb055ad0318fd38f53a5577f67c4c68404ed5c906c4ccf61df63373c"
+      "bytes": 194498568,
+      "sha256": "e6ba6af8ebb987367628a25f0530a6fc1f6d99c48cb30b4489f99d9f7be6839d"
     },
     "index.png": {
       "bytes": 2529562,

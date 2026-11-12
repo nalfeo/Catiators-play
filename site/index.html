@@ -109,9 +109,9 @@ body {
 
 		<script id="catiators-engine" type="application/x-catiators-loader" data-engine-src="index.js?v=53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"></script>
 		<script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194498504,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":194498568,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=6c2d87e0cb055ad0318fd38f53a5577f67c4c68404ed5c906c4ccf61df63373c";
+const GAME_PACK_URL = "index.pck?v=e6ba6af8ebb987367628a25f0530a6fc1f6d99c48cb30b4489f99d9f7be6839d";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -248,7 +248,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Opt-in startup diagnostics. Hosted samples use the consent-gated game recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@c5bb7b46944489ca274cec71d49d09d96e81df5c", "pack_bytes": 194498504};
+    const build = {"release": "catiators@281895c53e8f1c68f89649674899399b5eca6fd7", "pack_bytes": 194498568};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
