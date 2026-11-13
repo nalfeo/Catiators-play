@@ -1,31 +1,22 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "021679c73a6792319342535f25f379d1332a561e",
+  "source_commit": "a1f3d05398cbc85365be1d2859e6e76d9c683220",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-13T02:19:44.772932+00:00",
+  "published_utc": "2026-11-13T03:38:59.573757+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@021679c73a6792319342535f25f379d1332a561e",
+    "release": "catiators@a1f3d05398cbc85365be1d2859e6e76d9c683220",
     "sentry": true
   },
-  "pack_sha256": "f4c4c3ce2c6a8772c1d9fa8527baa75e1d35974a66a9ab0ffcd18a51730fbe35",
+  "pack_sha256": "872ddda3e05e05253212230f3b4f6055f6c7e7b137f0fa4700c125d9246bde0b",
   "source_validation": {
     "platform": "Windows",
-    "result": "passed_across_scoped_runs",
-    "python_tests": 827,
-    "engine_tests": 2061,
-    "engine_suites": 236,
-    "merge_followup": "20 Python tests and 4 pricing engine tests / 2922 assertions",
-    "repository_report": "20261113T004626Z-cd3d315b",
-    "engine_reports": [
-      "20261113T005354Z-cab31739",
-      "20261113T010952Z-9d25f046"
-    ],
-    "configured_export_report": "20261113T021703Z-005ce936",
-    "notes": "Earlier aggregate interruptions and scoped continuations are recorded in the source verification register; no hosted candidate claimed.",
-    "bounded_browser": "Isolated headless Edge 157: title, Play input and normal House Home rendered without runtime errors; no physical-device acceptance."
+    "result": "passed",
+    "report": "20261113T032916Z-7e3f51a8",
+    "scope": "Fresh automatic complete-delta repository, engine, smoke and configured Web export against c910ce66; no Blender selected",
+    "bounded_browser": "Isolated Edge 157 title, House Home and one-cat combat; analytics blocked."
   }
 }

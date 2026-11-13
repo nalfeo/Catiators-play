@@ -10,16 +10,16 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@021679c73a6792319342535f25f379d1332a561e",
+    "release": "catiators@a1f3d05398cbc85365be1d2859e6e76d9c683220",
     "sentry": true
   },
   "asset_policy": {
     "schema": 1,
-    "policy_sha256": "f3215963ae0cb7997386fa871160922ace62bb9c1957e7d90eb17904d929c00e",
-    "files": 6202,
+    "policy_sha256": "eaa4a560bf5ca5a1c5724d3ab2e8c0620e902afb32a09f9f0219f469337cacbe",
+    "files": 6302,
     "excluded_images": 612,
     "resized_images": 512,
-    "pck_sha256": "f4c4c3ce2c6a8772c1d9fa8527baa75e1d35974a66a9ab0ffcd18a51730fbe35"
+    "pck_sha256": "872ddda3e05e05253212230f3b4f6055f6c7e7b137f0fa4700c125d9246bde0b"
   },
   "files": {
     "index.audio.position.worklet.js": {
@@ -32,15 +32,15 @@
     },
     "index.html": {
       "bytes": 29657,
-      "sha256": "f42fc14bf6d1234c9a40e3326fae9130f6067eb836ee7926e0b08351142f0573"
+      "sha256": "6be710c4bdd15a3035b7f80d9e32d04878257ee9df13d5eb3460558a4c1c5b30"
     },
     "index.js": {
       "bytes": 280791,
       "sha256": "53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"
     },
     "index.pck": {
-      "bytes": 309080476,
-      "sha256": "f4c4c3ce2c6a8772c1d9fa8527baa75e1d35974a66a9ab0ffcd18a51730fbe35"
+      "bytes": 262224988,
+      "sha256": "872ddda3e05e05253212230f3b4f6055f6c7e7b137f0fa4700c125d9246bde0b"
     },
     "index.png": {
       "bytes": 2529562,
