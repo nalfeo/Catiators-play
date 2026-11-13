@@ -4,7 +4,7 @@
 
 ## Xbox Series X testing
 
-Build `3ac5bbc` is queued for Pages deployment.
+Build `3ac5bbc` is live. [Pages deployment](https://github.com/nalfeo/Catiators-play/actions/runs/43336714598).
 
 - [Play at 720p in Performance mode](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&visual_quality=performance&test_device=xbox_series_x&build=3ac5bbc)
 - [Play at 720p with Xbox diagnostics](https://nalfeo.github.io/Catiators-play/?diagnostics=1&render_720p=1&test_device=xbox_series_x&build=3ac5bbc)
