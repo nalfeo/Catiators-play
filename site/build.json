@@ -1,22 +1,29 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "a1f3d05398cbc85365be1d2859e6e76d9c683220",
+  "source_commit": "da930a38e474bf34f4147f5b9058ab9a7030a150",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-13T03:38:59.573757+00:00",
+  "published_utc": "2026-11-13T19:16:05.745222+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@a1f3d05398cbc85365be1d2859e6e76d9c683220",
+    "release": "catiators@da930a38e474bf34f4147f5b9058ab9a7030a150",
     "sentry": true
   },
-  "pack_sha256": "872ddda3e05e05253212230f3b4f6055f6c7e7b137f0fa4700c125d9246bde0b",
+  "pack_sha256": "aa2dc0f2986b0cedbc3555c368400f5a857955b26d0e0af25650589601ae7192",
+  "previous_public_commit": "41b9a2d143ea83fa44807bcecf815a00ebd9c46d",
   "source_validation": {
     "platform": "Windows",
-    "result": "passed",
-    "report": "20261113T032916Z-7e3f51a8",
-    "scope": "Fresh automatic complete-delta repository, engine, smoke and configured Web export against c910ce66; no Blender selected",
-    "bounded_browser": "Isolated Edge 157 title, House Home and one-cat combat; analytics blocked."
+    "python_tests": 854,
+    "engine_tests": 2082,
+    "engine_suites": 237,
+    "gameplay_snapshot_smoke": "passed",
+    "aggregate_result": "export_import_crashed_after_other_stages_passed",
+    "export_retry": "passed",
+    "repository_feedback": "passed",
+    "report": "docs/status/verification.md#browser-streaming-merge-review-2026-11-13",
+    "required_body_bytes": 18533719,
+    "bounded_browser": "passed configured artifact: Chromium cold/blocked-deferred wave 1, Home background start, 720p/1080p/Native persistence, returning profile/settings and streamed store"
   }
 }

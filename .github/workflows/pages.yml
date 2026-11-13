@@ -28,12 +28,41 @@ jobs:
           manifest = json.loads((site / 'web-export.json').read_text())
           expected = {'index.html', 'index.js', 'index.wasm', 'index.pck', 'index.png',
                       'index.audio.worklet.js', 'index.audio.position.worklet.js'}
-          assert set(manifest['files']) == expected
+          delivery = manifest.get('delivery')
+          if delivery:
+              assert delivery.get('schema') == 1 and delivery.get('transport') == 'brotli-worker'
+              assert not manifest.get('telemetry_override'), 'Streaming builds require embedded telemetry; re-export configured source'
+              assert 0 < delivery['required_transfer_bytes'] <= 20_000_000
+              assert json.loads((site / 'delivery-report.json').read_text()) == delivery
+              extra = set(manifest['files']) - expected
+              assert {'web-content.json', 'delivery-report.json'} <= extra
+              for name in extra - {'web-content.json', 'delivery-report.json'}:
+                  assert re.fullmatch(r'(content/[0-9a-f]{64}\.bin|startup/[0-9a-f]{64}\.br|decoder-[0-9a-f]{16}/(worker-[0-9a-f]{16}\.js|brotli-decoder\.mjs|LICENSE|LICENSE-MIT))', name), name
+              assert expected <= set(manifest['files'])
+              expected = set(manifest['files'])
+              for name, transport in delivery['startup']['files'].items():
+                  assert name in {'index.pck', 'index.wasm'}
+                  assert transport['decoded_bytes'] == manifest['files'][name]['bytes']
+                  assert manifest['files'][transport['url']] == {'bytes': transport['bytes'], 'sha256': transport['sha256']}
+              assert set(delivery['startup']['files']) == {'index.pck', 'index.wasm'}
+              assert delivery['startup']['worker'] in expected
+              shell = sum(record['bytes'] for name, record in manifest['files'].items() if Path(name).suffix in {'.html', '.js', '.mjs', '.png', '.svg', '.ico'})
+              assert shell == delivery['shell_upper_bound_bytes']
+              assert shell + sum(x['bytes'] for x in delivery['startup']['files'].values()) == delivery['required_transfer_bytes']
+              content = json.loads((site / 'web-content.json').read_text())
+              assert content.get('schema') == 1
+              for record in content['records'].values():
+                  for tier in ('standard', 'high'):
+                      asset = record[tier]
+                      assert asset['url'] == 'content/' + asset['sha256'] + '.bin'
+                      assert manifest['files'][asset['url']] == {'bytes': asset['bytes'], 'sha256': asset['sha256']}
+          else:
+              assert set(manifest['files']) == expected
           assert manifest['thread_support'] is False and manifest['mode'] == 'release'
           policy = manifest.get('asset_policy', {})
           assert policy.get('schema') == 1, 'Re-export with the runtime asset policy before publishing'
           assert re.fullmatch(r'[0-9a-f]{64}', policy.get('policy_sha256', '')), 'Missing asset policy provenance'
-          assert policy.get('pck_sha256') == manifest['files']['index.pck']['sha256'], 'Asset audit belongs to another pack'
+          assert policy.get('pck_sha256') == (delivery['source_pack_sha256'] if delivery else manifest['files']['index.pck']['sha256']), 'Asset audit belongs to another pack'
           build = json.loads((site / 'build.json').read_text())
           revision = build.get('source_commit', '')
           assert isinstance(revision, str) and re.fullmatch(r'[0-9a-f]{40}', revision), 'Missing source commit provenance'
@@ -98,7 +127,7 @@ jobs:
               assert pack.is_file() and not candidates, 'Do not mix a pack with split parts'
           for name, record in manifest['files'].items():
               path = site / name
-              assert path.is_file() and not path.is_symlink(), name
+              assert path.is_file() and not path.is_symlink() and path.resolve().is_relative_to(site.resolve()), name
               payload = path.read_bytes()
               assert len(payload) == record['bytes'] > 0, name
               assert hashlib.sha256(payload).hexdigest() == record['sha256'], name
@@ -124,8 +153,8 @@ jobs:
           for part in parts:
               part.unlink(missing_ok=True)
           allowed = expected | {'web-export.json', 'build.json'} | ({'telemetry_config.json'} if override else set())
-          assert {p.name for p in site.iterdir()} == allowed, 'Unexpected unchecked site files'
-          print('Checked export hashes match all seven game files.')
+          assert {p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()} == allowed, 'Unexpected unchecked site files'
+          print('Checked export hashes match all', len(expected), 'game files.')
           PY
       - name: Upload only the checked game
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
