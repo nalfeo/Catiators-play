@@ -13,11 +13,11 @@ Build `3dffc59` is live. [Pages deployment](https://github.com/nalfeo/Catiators-
 - [Read the last crash trace](https://nalfeo.github.io/Catiators-play/?diagnostics=read&build=3dffc59)
 - [Run the 720p rendering benchmark](https://nalfeo.github.io/Catiators-play/?render_benchmark=1&render_720p=1&benchmark_long=1&build=3dffc59)
 
-Start with the first link. Try House Home, then a new run through combat. The
-overlay shows FPS, focus, canvas size, visual tier, draw calls, frame
-intervals, and combat or House workload counts. Use **Settings → Visual quality** to compare
-Auto, Full, and Performance at the same resolution. Auto adapts House
-animation as well as arena effects.
+Start with the Performance link. Try House Home, then a new run through combat.
+The overlay should show **Performance, tier 3** alongside FPS, frame intervals,
+draw calls and workload counts. This link pins the preset for the page load.
+For a comparison at the same resolution, open the second link and use
+**Settings → Visual quality** to select Auto, Full or Performance.
 
 If Edge crashes, reopen it and use the recovery link before clearing site
 data. The rendering benchmark is a separate synthetic scene with no combat
