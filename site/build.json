@@ -1,22 +1,22 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "3dffc592157a31a2e625864c7391322eac9ccc6a",
+  "source_commit": "3ac5bbc1d9b67625fa765110f3434df83ac0e19a",
   "source_ci_run": null,
   "source_ci_result": "not_run",
   "build_origin": "local_windows",
-  "published_utc": "2026-11-12T23:47:35.335173+00:00",
+  "published_utc": "2026-11-13T00:23:09.851955+00:00",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
     "sentry": true,
-    "release": "catiators@3dffc592157a31a2e625864c7391322eac9ccc6a"
+    "release": "catiators@3ac5bbc1d9b67625fa765110f3434df83ac0e19a"
   },
-  "pack_sha256": "6fb26d7155aca9fe04a15b26d847037e3f477fe85ea4f08653b97ac6a80442e7",
+  "pack_sha256": "d5b406ff3ec9b3204d7221eff44f1f3c04bd1defb9f47de75d12926f8f09aef3",
   "source_validation": {
     "platform": "Windows",
-    "report": "20261112T232859Z-4dceaaea",
+    "report": "20261113T000853Z-b20c8659",
     "result": "passed",
-    "python_tests": 737,
-    "engine_tests": 2032
+    "python_tests": 755,
+    "engine_tests": 2037
   }
 }
