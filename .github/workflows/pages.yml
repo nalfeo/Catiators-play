@@ -2,6 +2,11 @@ name: Publish playtest
 
 on:
   workflow_dispatch:
+    inputs:
+      expected_commit:
+        description: Public artifact commit to deploy
+        type: string
+        required: false
 
 permissions:
   contents: read
@@ -17,6 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Confirm the requested artifact commit
+        env:
+          EXPECTED_COMMIT: ${{ inputs.expected_commit }}
+        run: |
+          if [[ -n "$EXPECTED_COMMIT" && "$EXPECTED_COMMIT" != "$GITHUB_SHA" ]]; then
+            echo "::error::Public main advanced before dispatch. Expected $EXPECTED_COMMIT, got $GITHUB_SHA."
+            exit 1
+          fi
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - name: Check the published files against the checked export
         run: |

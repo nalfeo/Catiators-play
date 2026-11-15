@@ -1,25 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "2f9132748467b9904a60cfa9ab95d935fd8c39fc",
-  "source_ci_run": null,
-  "source_ci_result": "not_run",
-  "build_origin": "local_windows",
-  "published_utc": "2026-11-14T02:23:45.880517+00:00",
+  "source_commit": "4f1f1f53d553a99748ec2a7086875dc6c1eeadea",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@2f9132748467b9904a60cfa9ab95d935fd8c39fc",
+    "release": "catiators@4f1f1f53d553a99748ec2a7086875dc6c1eeadea",
     "sentry": true
   },
-  "pack_sha256": "e424a1fb3eb148e6252ebbfccc92de03ebf37bd699a6ec1e1e79e62035246869",
-  "previous_public_commit": "5c0470d2841a6dd7cfddbbff1aacc2f41be163ab",
-  "source_validation": {
-    "platform": "Windows",
-    "godot_tests": 211,
-    "godot_suites": 16,
-    "godot_assertions": 6847,
-    "export_probes": "passed",
-    "local_browser_delivery": "passed",
-    "report": "docs/status/verification.md#playtest-regression-repair-2026-11-13"
-  }
+  "published_utc": "2026-11-15T07:47:34.707271+00:00",
+  "previous_public_commit": "5857289ee36ca33db5aa7db96049010deca9b282",
+  "build_origin": "local_windows",
+  "source_ci_run": null,
+  "source_ci_result": "not_run",
+  "source_validation": "docs/status/verification.md#main-integration-of-arena-bosses-and-encounter-presentation-2026-11-14 (Windows check-in, Web export and local Chromium delivery)"
 }
