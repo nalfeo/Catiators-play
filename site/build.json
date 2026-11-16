@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "e6ff8e2c43220614565ceb5584288c2d60624d30",
+  "source_commit": "e8ea5636d78ecddfc37e2214c82f02a033134fcb",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@e6ff8e2c43220614565ceb5584288c2d60624d30",
+    "release": "catiators@e8ea5636d78ecddfc37e2214c82f02a033134fcb",
     "sentry": true
   },
-  "published_utc": "2026-11-16T17:27:23.768040+00:00",
-  "previous_public_commit": "388dfc48b7893d437fde25d216907a681a2e06b6",
+  "published_utc": "2026-11-16T20:13:53.469499+00:00",
+  "previous_public_commit": "bc42ea33afc991261eda4422da3367165c3bb101",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows source acceptance: 911 Python tests and 2240 engine tests plus gameplay and snapshot smoke. Exact artifact passed local Chromium delivery checks including blocked content, wave one, input, resolution and profile persistence, and streamed store. Hosted CI not run."
+  "source_validation": "https://github.com/nalfeo/Catiators/blob/e8ea5636d78ecddfc37e2214c82f02a033134fcb/docs/status/verification.md#house-home-and-sprite-check-in-2026-11-16; configured export and local Chromium passed at 19,956,031 required bytes"
 }
