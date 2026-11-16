@@ -108,7 +108,7 @@ body {
     color:#fff1cf; font:clamp(12px,2.2vh,18px)/1.4 sans-serif; text-align:center;
     z-index:3; }
 #status-notice { position:relative; z-index:4; }
-</style><div id="status"><div id="build-version" style="position:absolute;left:24px;bottom:12px;z-index:3;color:#fff1cf;font:16px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.14-dev</div><div id="loading-explanation" role="status">Downloading the game, then preparing the arena. The first visit can take longer.</div>
+</style><div id="status"><div id="build-version" style="position:absolute;left:24px;bottom:12px;z-index:3;color:#fff1cf;font:16px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.16-dev</div><div id="loading-explanation" role="status">Downloading the game, then preparing the arena. The first visit can take longer.</div>
 			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
@@ -119,7 +119,7 @@ body {
 /* A bounded module worker keeps startup decoding off the UI thread. */
 (() => {
     "use strict";
-    const assets = {"files":{"index.pck":{"url":"startup/eebaf462aa494ea86f7cf395cd9324a13cfb5cbbb211287faeaf54e7bcdf8934.br","bytes":10623244,"sha256":"eebaf462aa494ea86f7cf395cd9324a13cfb5cbbb211287faeaf54e7bcdf8934","decoded_bytes":15582096},"index.wasm":{"url":"startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br","bytes":7095787,"sha256":"ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070","decoded_bytes":39514754}},"worker":"decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"};
+    const assets = {"files":{"index.pck":{"url":"startup/814cbe17b3b5b54c550574e860743f4cb594ace5fef490411f0bd85792ac7c6a.br","bytes":10669642,"sha256":"814cbe17b3b5b54c550574e860743f4cb594ace5fef490411f0bd85792ac7c6a","decoded_bytes":15639408},"index.wasm":{"url":"startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br","bytes":7095787,"sha256":"ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070","decoded_bytes":39514754}},"worker":"decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"};
     const originalFetch = window.fetch.bind(window);
     const pending = new Map();
     let worker = null, nextId = 1;
@@ -324,9 +324,9 @@ body {
 
 </script>
 <script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args": [], "canvasResizePolicy": 2, "emscriptenPoolSize": 8, "ensureCrossOriginIsolationHeaders": true, "executable": "index", "experimentalVK": false, "fileSizes": {"index.pck": 15582096, "index.wasm": 39514754}, "focusCanvas": true, "gdextensionLibs": [], "godotPoolSize": 4};
+const GODOT_CONFIG = {"args": [], "canvasResizePolicy": 2, "emscriptenPoolSize": 8, "ensureCrossOriginIsolationHeaders": true, "executable": "index", "experimentalVK": false, "fileSizes": {"index.pck": 15639408, "index.wasm": 39514754}, "focusCanvas": true, "gdextensionLibs": [], "godotPoolSize": 4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=52dc550915dac3f5c2e788c7aee561dfb46b280870ebf9fbeacbe2af311382e5";
+const GAME_PACK_URL = "index.pck?v=62074201fe16adc187396c2017fc8e831b1f18aa268b438ed31b35570b96d6df";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -501,7 +501,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Local recovery breadcrumbs; opt-in counters share through the consent-gated recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@4f1f1f53d553a99748ec2a7086875dc6c1eeadea", "pack_bytes": 15582096};
+    const build = {"release": "catiators@e6ff8e2c43220614565ceb5584288c2d60624d30", "pack_bytes": 15639408};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";

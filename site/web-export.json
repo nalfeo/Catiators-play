@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "build_version": "2026.11.14-dev",
+  "build_version": "2026.11.16-dev",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "preset": "Web",
   "mode": "release",
@@ -10,29 +10,29 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@4f1f1f53d553a99748ec2a7086875dc6c1eeadea",
+    "release": "catiators@e6ff8e2c43220614565ceb5584288c2d60624d30",
     "sentry": true
   },
   "delivery": {
     "schema": 1,
-    "source_pack_sha256": "5321235104ef8aeeab1508bdeb42730cb0245d26e6b2abc672a88bf73f2137bb",
-    "startup_pack_bytes": 15582096,
-    "startup_pack_gzip_bytes": 11236973,
+    "source_pack_sha256": "c41838570280c2ed7170ff6ecb55d79222fe8cc51a513f1805de2ca30d39eddb",
+    "startup_pack_bytes": 15639408,
+    "startup_pack_gzip_bytes": 11287579,
     "required_assets": 462,
     "deferred_assets": 1727,
     "category_bytes": {
-      "other": 10395185,
+      "other": 10451874,
       "imported": 4626430
     },
-    "required_transfer_bytes": 18835198,
+    "required_transfer_bytes": 18881596,
     "budget_bytes": 20000000,
     "startup": {
       "files": {
         "index.pck": {
-          "url": "startup/eebaf462aa494ea86f7cf395cd9324a13cfb5cbbb211287faeaf54e7bcdf8934.br",
-          "bytes": 10623244,
-          "sha256": "eebaf462aa494ea86f7cf395cd9324a13cfb5cbbb211287faeaf54e7bcdf8934",
-          "decoded_bytes": 15582096
+          "url": "startup/814cbe17b3b5b54c550574e860743f4cb594ace5fef490411f0bd85792ac7c6a.br",
+          "bytes": 10669642,
+          "sha256": "814cbe17b3b5b54c550574e860743f4cb594ace5fef490411f0bd85792ac7c6a",
+          "decoded_bytes": 15639408
         },
         "index.wasm": {
           "url": "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br",
@@ -50,10 +50,10 @@
   "asset_policy": {
     "schema": 1,
     "policy_sha256": "41414155114c10affad2e478acd020afa98c23b785389e01472739e8132baf22",
-    "files": 6402,
+    "files": 6410,
     "excluded_images": 612,
     "resized_images": 514,
-    "pck_sha256": "5321235104ef8aeeab1508bdeb42730cb0245d26e6b2abc672a88bf73f2137bb"
+    "pck_sha256": "c41838570280c2ed7170ff6ecb55d79222fe8cc51a513f1805de2ca30d39eddb"
   },
   "files": {
     "content/0002908d3aa50c0c6b8eda486b087f3e443fa2f9c83247ffefbc850847a4da7d.bin": {
@@ -15526,7 +15526,7 @@
     },
     "delivery-report.json": {
       "bytes": 1154,
-      "sha256": "7af1c578b53654a483cdb93bf3a599ca5c730d9c861b3528d9370d62d1f88458"
+      "sha256": "5ce692c7f43e5feca6812c6fc2bf93ac5999b87b98815bad9d9d7f9f9336a065"
     },
     "index.audio.position.worklet.js": {
       "bytes": 2973,
@@ -15538,15 +15538,15 @@
     },
     "index.html": {
       "bytes": 586658,
-      "sha256": "96347f266e40efde6311b7d42cba7a8af9b4e9d02b629021dc426eb42c4caa05"
+      "sha256": "0a5fbb7eb8ca5eb07e42da9cda816cd6c618f81ce71a3eebb59358492dcd8529"
     },
     "index.js": {
       "bytes": 280791,
       "sha256": "53fd314159b851942a4fd1ba31481dd89aa55e4e935afb7bba21252deda61275"
     },
     "index.pck": {
-      "bytes": 15582096,
-      "sha256": "52dc550915dac3f5c2e788c7aee561dfb46b280870ebf9fbeacbe2af311382e5"
+      "bytes": 15639408,
+      "sha256": "62074201fe16adc187396c2017fc8e831b1f18aa268b438ed31b35570b96d6df"
     },
     "index.png": {
       "bytes": 82369,
@@ -15556,13 +15556,13 @@
       "bytes": 39514754,
       "sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0"
     },
+    "startup/814cbe17b3b5b54c550574e860743f4cb594ace5fef490411f0bd85792ac7c6a.br": {
+      "bytes": 10669642,
+      "sha256": "814cbe17b3b5b54c550574e860743f4cb594ace5fef490411f0bd85792ac7c6a"
+    },
     "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br": {
       "bytes": 7095787,
       "sha256": "ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070"
-    },
-    "startup/eebaf462aa494ea86f7cf395cd9324a13cfb5cbbb211287faeaf54e7bcdf8934.br": {
-      "bytes": 10623244,
-      "sha256": "eebaf462aa494ea86f7cf395cd9324a13cfb5cbbb211287faeaf54e7bcdf8934"
     },
     "web-content.json": {
       "bytes": 1217067,
