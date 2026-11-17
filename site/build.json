@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "e8ea5636d78ecddfc37e2214c82f02a033134fcb",
+  "source_commit": "af31f54d560d99c30fbafe27d9c4c20fc176ddec",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@e8ea5636d78ecddfc37e2214c82f02a033134fcb",
+    "release": "catiators@af31f54d560d99c30fbafe27d9c4c20fc176ddec",
     "sentry": true
   },
-  "published_utc": "2026-11-16T20:13:53.469499+00:00",
-  "previous_public_commit": "bc42ea33afc991261eda4422da3367165c3bb101",
+  "published_utc": "2026-11-17T16:07:51.200969+00:00",
+  "previous_public_commit": "c88770e4dd4024b57d99b2c50e1d817558a6b2ce",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "https://github.com/nalfeo/Catiators/blob/e8ea5636d78ecddfc37e2214c82f02a033134fcb/docs/status/verification.md#house-home-and-sprite-check-in-2026-11-16; configured export and local Chromium passed at 19,956,031 required bytes"
+  "source_validation": "Windows local checks: docs/status/verification.md#playtest-main-sync-and-review-2026-11-16; release export and bounded local Chromium title/Home/wave1/input/profile reload passed 2026-11-17. Broader delivery assertion expects zero demand downloads and conflicts with shop icon prewarming (8490 bytes); blocked-content wave1 passed. Hosted candidate and human/device acceptance not run."
 }

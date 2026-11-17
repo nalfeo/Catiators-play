@@ -1,23 +1,23 @@
 {
   "schema": 1,
-  "source_pack_sha256": "ca275f3e8845718696cee57717a8c63adf2e7154b70491d3da4d9bd2b67783a6",
-  "startup_pack_bytes": 16708448,
-  "startup_pack_gzip_bytes": 12362207,
-  "required_assets": 462,
-  "deferred_assets": 1727,
+  "source_pack_sha256": "5532ee6b7a308103a40b3ae9ad8ad97b58ad21a6c053e57ebbd366e892a6ba83",
+  "startup_pack_bytes": 16607632,
+  "startup_pack_gzip_bytes": 12249926,
+  "required_assets": 458,
+  "deferred_assets": 1734,
   "category_bytes": {
-    "other": 11520757,
-    "imported": 4626430
+    "other": 11592401,
+    "imported": 4452320
   },
-  "required_transfer_bytes": 19956031,
+  "required_transfer_bytes": 19754803,
   "budget_bytes": 20000000,
   "startup": {
     "files": {
       "index.pck": {
-        "url": "startup/087e22161d1c6ddc839e65a11edb54836f280776004352a247a59c577e4750a5.br",
-        "bytes": 11744200,
-        "sha256": "087e22161d1c6ddc839e65a11edb54836f280776004352a247a59c577e4750a5",
-        "decoded_bytes": 16708448
+        "url": "startup/d856c5885e38daf9f6781f1746c7ce088219610a057418b86b765f2ba8339f0c.br",
+        "bytes": 11629807,
+        "sha256": "d856c5885e38daf9f6781f1746c7ce088219610a057418b86b765f2ba8339f0c",
+        "decoded_bytes": 16607632
       },
       "index.wasm": {
         "url": "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br",
@@ -28,7 +28,7 @@
     },
     "worker": "decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"
   },
-  "shell_upper_bound_bytes": 1116044,
+  "shell_upper_bound_bytes": 1029209,
   "transport": "brotli-worker",
   "pillow": "12.3.0"
 }
