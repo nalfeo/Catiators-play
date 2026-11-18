@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "af31f54d560d99c30fbafe27d9c4c20fc176ddec",
+  "source_commit": "1110d04470ebc5b02e4ee9b2a36a1ded8bbfb4d8",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@af31f54d560d99c30fbafe27d9c4c20fc176ddec",
+    "release": "catiators@1110d04470ebc5b02e4ee9b2a36a1ded8bbfb4d8",
     "sentry": true
   },
-  "published_utc": "2026-11-17T16:07:51.200969+00:00",
-  "previous_public_commit": "c88770e4dd4024b57d99b2c50e1d817558a6b2ce",
+  "published_utc": "2026-11-18T04:19:51.969977+00:00",
+  "previous_public_commit": "d7af0962c5079254e942ddbd5a6e6272149322e2",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows local checks: docs/status/verification.md#playtest-main-sync-and-review-2026-11-16; release export and bounded local Chromium title/Home/wave1/input/profile reload passed 2026-11-17. Broader delivery assertion expects zero demand downloads and conflicts with shop icon prewarming (8490 bytes); blocked-content wave1 passed. Hosted candidate and human/device acceptance not run."
+  "source_validation": "User-approved exception for this artifact only. Windows source checks passed catalogs, documentation, Python, formatting, native build, and focused engine checks. The full selected Godot gate had 11 failures and did not run its smoke stage. Cold-start transfer is 20,004,209 bytes against the standard 20,000,000-byte budget. Package integrity, startup-only wave 1 probe, and local Chromium title, Home, wave 1, keyboard input, and profile reload passed."
 }
