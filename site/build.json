@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "ccb52e7b30e25b0d71b2ba2a296ab8a8dff432e7",
+  "source_commit": "ab79fdb87e46a81738c9fa9994272b5c37ef0075",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@ccb52e7b30e25b0d71b2ba2a296ab8a8dff432e7",
+    "release": "catiators@ab79fdb87e46a81738c9fa9994272b5c37ef0075",
     "sentry": true
   },
-  "published_utc": "2026-11-18T05:41:59.002725+00:00",
-  "previous_public_commit": "16114719d865d44c84f682a9153cca75dd013fb3",
+  "published_utc": "2026-11-18T19:14:00.207448+00:00",
+  "previous_public_commit": "bd97f23a1136d18b3cec2d0f92a6c400f425ca6b",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows complete delta against aefa8d14: 35 catalogs, 41 feature records, 953 Python tests, formatting, 267 Godot suites, native build, seeded gameplay and snapshot smoke, and Web packaging passed. Local Chromium passed title, House Home, wave 1, keyboard input, and profile reload. Startup transfer: 19,983,763 bytes of 20,000,000. Hosted acceptance and device/human playtests were outside this release validation."
+  "source_validation": "Windows change-selected repository, Godot, gameplay and Web checks passed. Desktop Chromium verified cold startup, background delivery and returning cache. See the continuous browser delivery and cached warmup record in source docs/status/verification.md."
 }
