@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "ab79fdb87e46a81738c9fa9994272b5c37ef0075",
+  "source_commit": "8ef6650a2ee4b6fcb6eeaec30c1ef0e85acc5cbc",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@ab79fdb87e46a81738c9fa9994272b5c37ef0075",
+    "release": "catiators@8ef6650a2ee4b6fcb6eeaec30c1ef0e85acc5cbc",
     "sentry": true
   },
-  "published_utc": "2026-11-18T19:14:00.207448+00:00",
-  "previous_public_commit": "bd97f23a1136d18b3cec2d0f92a6c400f425ca6b",
+  "published_utc": "2026-11-18T20:26:21.391118+00:00",
+  "previous_public_commit": "e61761ab50d049a4bcc495979021cbacaf50b85a",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows change-selected repository, Godot, gameplay and Web checks passed. Desktop Chromium verified cold startup, background delivery and returning cache. See the continuous browser delivery and cached warmup record in source docs/status/verification.md."
+  "source_validation": "Windows change-scoped source checks, native gameplay smoke and startup Web probe"
 }
