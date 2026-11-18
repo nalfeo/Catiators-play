@@ -10,29 +10,29 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@1110d04470ebc5b02e4ee9b2a36a1ded8bbfb4d8",
+    "release": "catiators@ccb52e7b30e25b0d71b2ba2a296ab8a8dff432e7",
     "sentry": true
   },
   "delivery": {
     "schema": 1,
-    "source_pack_sha256": "10fe422b984c4cd564c7cf7043b3c9b2c0c25523850afd7d901d9c153db7c8ea",
-    "startup_pack_bytes": 17053184,
-    "startup_pack_gzip_bytes": 12551424,
+    "source_pack_sha256": "373c52b3165f6c5190ceca69bbe2ff1b595fb6b90f6bc24255977e56e977f63f",
+    "startup_pack_bytes": 17061024,
+    "startup_pack_gzip_bytes": 12559698,
     "required_assets": 458,
     "deferred_assets": 1759,
     "category_bytes": {
-      "other": 12029420,
+      "other": 12037258,
       "imported": 4452320
     },
-    "required_transfer_bytes": 20004209,
+    "required_transfer_bytes": 19983763,
     "budget_bytes": 20000000,
     "startup": {
       "files": {
         "index.pck": {
-          "url": "startup/702d12e5d5cec4fc35230e13f3784405b072c623aa4cb10671b5852f37b32b09.br",
-          "bytes": 11918044,
-          "sha256": "702d12e5d5cec4fc35230e13f3784405b072c623aa4cb10671b5852f37b32b09",
-          "decoded_bytes": 17053184
+          "url": "startup/cfe90433b425eafdf79e3d68607ac63a38787c4e89323953db7fceb8f0b8ac79.br",
+          "bytes": 11925607,
+          "sha256": "cfe90433b425eafdf79e3d68607ac63a38787c4e89323953db7fceb8f0b8ac79",
+          "decoded_bytes": 17061024
         },
         "index.wasm": {
           "url": "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br",
@@ -43,7 +43,7 @@
       },
       "worker": "decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"
     },
-    "shell_upper_bound_bytes": 990378,
+    "shell_upper_bound_bytes": 962369,
     "transport": "brotli-worker",
     "pillow": "12.3.0"
   },
@@ -53,7 +53,7 @@
     "files": 6505,
     "excluded_images": 616,
     "resized_images": 514,
-    "pck_sha256": "10fe422b984c4cd564c7cf7043b3c9b2c0c25523850afd7d901d9c153db7c8ea"
+    "pck_sha256": "373c52b3165f6c5190ceca69bbe2ff1b595fb6b90f6bc24255977e56e977f63f"
   },
   "files": {
     "content/0002908d3aa50c0c6b8eda486b087f3e443fa2f9c83247ffefbc850847a4da7d.bin": {
@@ -15750,7 +15750,7 @@
     },
     "delivery-report.json": {
       "bytes": 1153,
-      "sha256": "df9383560245235aecda9e1bc2ae576bd21ebfef0b3eaa3d6773b82f4f102987"
+      "sha256": "47be54e991d967ba233ff8437e64f22441aaa892cff80f9302cad8ecb93dd4bc"
     },
     "index.audio.position.worklet.js": {
       "bytes": 2973,
@@ -15761,16 +15761,16 @@
       "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
     },
     "index.html": {
-      "bytes": 507373,
-      "sha256": "63d4772a01b0000c5c230d915a16355d38bf865b209ddf0679b9fddc503fdee2"
+      "bytes": 479364,
+      "sha256": "42bdb7534b03e0bc03de462df420a5090362c17ed8b9393427fe4994965531a1"
     },
     "index.js": {
       "bytes": 280024,
       "sha256": "5b119359f2433fb93727f0347a0fd20fd222ec84ed5b1e00fc13b00165865fe5"
     },
     "index.pck": {
-      "bytes": 17053184,
-      "sha256": "2d456ff0c8d8e5fc6a5c65f3a749cbf0b968a9fb404ff6f7887802d66ca89083"
+      "bytes": 17061024,
+      "sha256": "a88514f758dd1c0372cd72036898439300d284822e4beb7f0f48a061d07d0300"
     },
     "index.png": {
       "bytes": 36632,
@@ -15780,13 +15780,13 @@
       "bytes": 39514754,
       "sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0"
     },
-    "startup/702d12e5d5cec4fc35230e13f3784405b072c623aa4cb10671b5852f37b32b09.br": {
-      "bytes": 11918044,
-      "sha256": "702d12e5d5cec4fc35230e13f3784405b072c623aa4cb10671b5852f37b32b09"
-    },
     "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br": {
       "bytes": 7095787,
       "sha256": "ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070"
+    },
+    "startup/cfe90433b425eafdf79e3d68607ac63a38787c4e89323953db7fceb8f0b8ac79.br": {
+      "bytes": 11925607,
+      "sha256": "cfe90433b425eafdf79e3d68607ac63a38787c4e89323953db7fceb8f0b8ac79"
     },
     "web-content.json": {
       "bytes": 1232071,

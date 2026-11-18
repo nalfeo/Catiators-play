@@ -45,10 +45,7 @@ jobs:
           if delivery:
               assert delivery.get('schema') == 1 and delivery.get('transport') == 'brotli-worker'
               assert not manifest.get('telemetry_override'), 'Streaming builds require embedded telemetry; re-export configured source'
-              # Approved exception for one manifest from source 1110d044.
-              approved_manifest = '8acdcd6e99a000e667d0e9442ea8f9f4240ca03b4b6c1d79def81ed56f6d7c10'
-              approved = hashlib.sha256((site / 'web-export.json').read_bytes()).hexdigest() == approved_manifest
-              assert 0 < delivery['required_transfer_bytes'] <= 20_000_000 or (approved and delivery['required_transfer_bytes'] == 20_004_209)
+              assert 0 < delivery['required_transfer_bytes'] <= 20_000_000
               assert json.loads((site / 'delivery-report.json').read_text()) == delivery
               extra = set(manifest['files']) - expected
               assert {'web-content.json', 'delivery-report.json'} <= extra

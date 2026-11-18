@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "1110d04470ebc5b02e4ee9b2a36a1ded8bbfb4d8",
+  "source_commit": "ccb52e7b30e25b0d71b2ba2a296ab8a8dff432e7",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@1110d04470ebc5b02e4ee9b2a36a1ded8bbfb4d8",
+    "release": "catiators@ccb52e7b30e25b0d71b2ba2a296ab8a8dff432e7",
     "sentry": true
   },
-  "published_utc": "2026-11-18T04:19:51.969977+00:00",
-  "previous_public_commit": "d7af0962c5079254e942ddbd5a6e6272149322e2",
+  "published_utc": "2026-11-18T05:41:59.002725+00:00",
+  "previous_public_commit": "16114719d865d44c84f682a9153cca75dd013fb3",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "User-approved exception for this artifact only. Windows source checks passed catalogs, documentation, Python, formatting, native build, and focused engine checks. The full selected Godot gate had 11 failures and did not run its smoke stage. Cold-start transfer is 20,004,209 bytes against the standard 20,000,000-byte budget. Package integrity, startup-only wave 1 probe, and local Chromium title, Home, wave 1, keyboard input, and profile reload passed."
+  "source_validation": "Windows complete delta against aefa8d14: 35 catalogs, 41 feature records, 953 Python tests, formatting, 267 Godot suites, native build, seeded gameplay and snapshot smoke, and Web packaging passed. Local Chromium passed title, House Home, wave 1, keyboard input, and profile reload. Startup transfer: 19,983,763 bytes of 20,000,000. Hosted acceptance and device/human playtests were outside this release validation."
 }
