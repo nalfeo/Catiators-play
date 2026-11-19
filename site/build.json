@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "1ba237a65cbf2d8c17a3fed43ca3b6b8abcea5c2",
+  "source_commit": "1a256d310da7238a41f8b8ed5b4c024a138ea4aa",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@1ba237a65cbf2d8c17a3fed43ca3b6b8abcea5c2",
+    "release": "catiators@1a256d310da7238a41f8b8ed5b4c024a138ea4aa",
     "sentry": true
   },
-  "published_utc": "2026-11-19T08:34:35.108887+00:00",
-  "previous_public_commit": "40d6f830ba482230a6804798ece79f492b84bdf4",
+  "published_utc": "2026-11-19T22:55:45.132972+00:00",
+  "previous_public_commit": "ad610ec95c356a7db92b0e1e63d6eb81d7e0de03",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows change-scoped repository and engine checks, native smoke, and Chromium Web verification"
+  "source_validation": "Windows: 1065 fresh Python tests, formatting, bounded Blender 5.2.3, 268 Godot 4.7.2 suites (2565 tests), six seeded smoke scenarios, checked single-threaded Web export, and Chromium mobile picker, crest and first-wave checks. Offline exhaustive matrix deferred."
 }

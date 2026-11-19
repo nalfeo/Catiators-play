@@ -41,6 +41,10 @@ jobs:
           manifest = json.loads((site / 'web-export.json').read_text())
           expected = {'index.html', 'index.js', 'index.wasm', 'index.pck', 'index.png',
                       'index.audio.worklet.js', 'index.audio.position.worklet.js'}
+          icons = {'index.icon.png', 'index.apple-touch-icon.png'}
+          icon_files = icons.intersection(manifest['files'])
+          assert not icon_files or icon_files == icons, 'Expected both exported icons'
+          expected |= icon_files
           delivery = manifest.get('delivery')
           if delivery:
               assert delivery.get('schema') == 1 and delivery.get('transport') == 'brotli-worker'
