@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "8ef6650a2ee4b6fcb6eeaec30c1ef0e85acc5cbc",
+  "source_commit": "1ba237a65cbf2d8c17a3fed43ca3b6b8abcea5c2",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@8ef6650a2ee4b6fcb6eeaec30c1ef0e85acc5cbc",
+    "release": "catiators@1ba237a65cbf2d8c17a3fed43ca3b6b8abcea5c2",
     "sentry": true
   },
-  "published_utc": "2026-11-18T20:26:21.391118+00:00",
-  "previous_public_commit": "e61761ab50d049a4bcc495979021cbacaf50b85a",
+  "published_utc": "2026-11-19T08:34:35.108887+00:00",
+  "previous_public_commit": "40d6f830ba482230a6804798ece79f492b84bdf4",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows change-scoped source checks, native gameplay smoke and startup Web probe"
+  "source_validation": "Windows change-scoped repository and engine checks, native smoke, and Chromium Web verification"
 }
