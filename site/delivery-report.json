@@ -1,34 +1,34 @@
 {
   "schema": 1,
-  "source_pack_sha256": "e639cee28c2985dd8ac51dc39b597b4aa3102f6f4554abd1a181ebe858c73517",
-  "startup_pack_bytes": 16941680,
-  "startup_pack_gzip_bytes": 12565908,
-  "required_assets": 260,
+  "source_pack_sha256": "a343701c5bf4bcea1dff2c10756235e4d4b1f7bafdebadd23e7ed31a00ec93d8",
+  "startup_pack_bytes": 17272688,
+  "startup_pack_gzip_bytes": 12781632,
+  "required_assets": 282,
   "deferred_assets": 1781,
   "category_bytes": {
-    "other": 11917818,
-    "imported": 4487800
+    "other": 12063815,
+    "imported": 4667468
   },
-  "required_transfer_bytes": 19940369,
+  "required_transfer_bytes": 19963108,
   "budget_bytes": 20000000,
   "startup": {
     "files": {
       "index.pck": {
-        "url": "startup/dc14a9d1983c2aba54f26c66846f30b9f2801ff11e11b74c5a124bf0a2302c26.br",
-        "bytes": 11933543,
-        "sha256": "dc14a9d1983c2aba54f26c66846f30b9f2801ff11e11b74c5a124bf0a2302c26",
-        "decoded_bytes": 16941680
+        "url": "startup/4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc.br",
+        "bytes": 12145283,
+        "sha256": "4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc",
+        "decoded_bytes": 17272688
       },
       "index.wasm": {
-        "url": "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br",
-        "bytes": 7095787,
-        "sha256": "ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070",
+        "url": "startup/cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2.br",
+        "bytes": 6902599,
+        "sha256": "cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2",
         "decoded_bytes": 39514754
       }
     },
     "worker": "decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"
   },
-  "shell_upper_bound_bytes": 911039,
+  "shell_upper_bound_bytes": 915226,
   "transport": "brotli-worker",
   "pillow": "12.3.0"
 }

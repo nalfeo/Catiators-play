@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "c2ad6610fddc162607e32a75100cb81767d90366",
+  "source_commit": "244ff4ed5337f97d990404e2d6c6e668cce3f2b2",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@c2ad6610fddc162607e32a75100cb81767d90366",
+    "release": "catiators@244ff4ed5337f97d990404e2d6c6e668cce3f2b2",
     "sentry": true
   },
-  "published_utc": "2026-11-21T05:53:45.839100+00:00",
-  "previous_public_commit": "6775bb1966880f3d9946f74389b8ef446ebb2420",
+  "published_utc": "2026-11-21T07:43:32.889952+00:00",
+  "previous_public_commit": "2a86939fea5e4d8b195e11c38db788f8e01808b0",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Source c2ad6610 passed Windows delta gate 927fe397d66b4fda8236dd01743a1440; official export and loopback Chromium smoke passed"
+  "source_validation": ".work/roaming-release-validation.txt"
 }
