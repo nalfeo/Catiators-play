@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "build_version": "2026.11.20-dev",
+  "build_version": "2026.11.21-dev",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "preset": "Web",
   "mode": "release",
@@ -10,29 +10,29 @@
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@244ff4ed5337f97d990404e2d6c6e668cce3f2b2",
+    "release": "catiators@bc75c9e60e57174b8bc8c9360013531c9b60c25b",
     "sentry": true
   },
   "delivery": {
     "schema": 1,
-    "source_pack_sha256": "a343701c5bf4bcea1dff2c10756235e4d4b1f7bafdebadd23e7ed31a00ec93d8",
-    "startup_pack_bytes": 17272688,
-    "startup_pack_gzip_bytes": 12781632,
+    "source_pack_sha256": "5ab92d9e2a0f6313a467bcb584777e4ed68469a5be469d2260eb9bf32aad5012",
+    "startup_pack_bytes": 17279664,
+    "startup_pack_gzip_bytes": 12788388,
     "required_assets": 282,
     "deferred_assets": 1781,
     "category_bytes": {
-      "other": 12063815,
+      "other": 12070618,
       "imported": 4667468
     },
-    "required_transfer_bytes": 19963108,
+    "required_transfer_bytes": 19973492,
     "budget_bytes": 20000000,
     "startup": {
       "files": {
         "index.pck": {
-          "url": "startup/4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc.br",
-          "bytes": 12145283,
-          "sha256": "4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc",
-          "decoded_bytes": 17272688
+          "url": "startup/0768eedc63c7950dd0f76268b9da4510a74bf1125d1c56a9fa1c345289c8cd30.br",
+          "bytes": 12155667,
+          "sha256": "0768eedc63c7950dd0f76268b9da4510a74bf1125d1c56a9fa1c345289c8cd30",
+          "decoded_bytes": 17279664
         },
         "index.wasm": {
           "url": "startup/cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2.br",
@@ -50,10 +50,10 @@
   "asset_policy": {
     "schema": 1,
     "policy_sha256": "4f395f292a8cf08c056e2c7150cbf70bd4f354b6579b936c005c926ac4d1431f",
-    "files": 6241,
+    "files": 6243,
     "excluded_images": 824,
     "resized_images": 538,
-    "pck_sha256": "a343701c5bf4bcea1dff2c10756235e4d4b1f7bafdebadd23e7ed31a00ec93d8"
+    "pck_sha256": "5ab92d9e2a0f6313a467bcb584777e4ed68469a5be469d2260eb9bf32aad5012"
   },
   "files": {
     "content/0002908d3aa50c0c6b8eda486b087f3e443fa2f9c83247ffefbc850847a4da7d.bin": {
@@ -14674,7 +14674,7 @@
     },
     "delivery-report.json": {
       "bytes": 1153,
-      "sha256": "f079bd5fac5bc944241bc7fd06ccf0c139ec45949892532373c4f041f6fb77ce"
+      "sha256": "0c3ce4268e49e69f88dcc8abac2d6ea3cd2c83907e8661839504d7ef9b45ff80"
     },
     "index.apple-touch-icon.png": {
       "bytes": 9132,
@@ -14690,7 +14690,7 @@
     },
     "index.html": {
       "bytes": 454298,
-      "sha256": "65ad34f0c105c01356d8d25af9ded8cc6ba411bebff5bd9070ef60b84dee4376"
+      "sha256": "4a06d92ed9213a8279a49d4d57afc4c53f5edd69c776fee634746cf2d6d1443b"
     },
     "index.icon.png": {
       "bytes": 5353,
@@ -14701,8 +14701,8 @@
       "sha256": "5b119359f2433fb93727f0347a0fd20fd222ec84ed5b1e00fc13b00165865fe5"
     },
     "index.pck": {
-      "bytes": 17272688,
-      "sha256": "c9cf93b5e798e74f3f168fa0e08c499a124d0ffbc13a6df5b8d86644942675d0"
+      "bytes": 17279664,
+      "sha256": "02d0700010f92652f9af46c7c3a530f6959a4fdbcb56178d5c9484e7b63fd711"
     },
     "index.png": {
       "bytes": 70,
@@ -14712,9 +14712,9 @@
       "bytes": 39514754,
       "sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0"
     },
-    "startup/4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc.br": {
-      "bytes": 12145283,
-      "sha256": "4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc"
+    "startup/0768eedc63c7950dd0f76268b9da4510a74bf1125d1c56a9fa1c345289c8cd30.br": {
+      "bytes": 12155667,
+      "sha256": "0768eedc63c7950dd0f76268b9da4510a74bf1125d1c56a9fa1c345289c8cd30"
     },
     "startup/cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2.br": {
       "bytes": 6902599,

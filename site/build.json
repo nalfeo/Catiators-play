@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "244ff4ed5337f97d990404e2d6c6e668cce3f2b2",
+  "source_commit": "bc75c9e60e57174b8bc8c9360013531c9b60c25b",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@244ff4ed5337f97d990404e2d6c6e668cce3f2b2",
+    "release": "catiators@bc75c9e60e57174b8bc8c9360013531c9b60c25b",
     "sentry": true
   },
-  "published_utc": "2026-11-21T07:43:32.889952+00:00",
-  "previous_public_commit": "2a86939fea5e4d8b195e11c38db788f8e01808b0",
+  "published_utc": "2026-11-21T19:37:35.061640+00:00",
+  "previous_public_commit": "7f146cfdf22d127ee2f74a2a0e8f82eadf3b94b5",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": ".work/roaming-release-validation.txt"
+  "source_validation": "Windows acceptance 4f7954e0da7d4b219840a5e530e8ffba: 982 Python tests, 2266 Godot tests, gameplay smoke and a verified official Web export. Local Chromium confirmed delayed House Home and cat-selection art on this revision."
 }

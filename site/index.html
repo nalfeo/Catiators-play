@@ -107,7 +107,7 @@ body {
 #status-splash.fullsize--true { bottom:70px; height:calc(100% - 70px); }
 #status-progress { bottom:48px; z-index:2; }
 #status-notice { position:relative; z-index:4; }
-</style><div id="status"><div id="build-version" style="position:absolute;left:24px;bottom:12px;z-index:3;color:#fff1cf;font:16px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.20-dev</div>
+</style><div id="status"><div id="build-version" style="position:absolute;left:24px;bottom:12px;z-index:3;color:#fff1cf;font:16px sans-serif;text-shadow:1px 2px #24182b;pointer-events:none">v2026.11.21-dev</div>
 			<img id="status-splash" class="show-image--false fullsize--true use-filter--true"  alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
@@ -152,7 +152,7 @@ body {
 /* A bounded module worker keeps startup decoding off the UI thread. */
 (() => {
     "use strict";
-    const assets = {"files":{"index.pck":{"url":"startup/4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc.br","bytes":12145283,"sha256":"4187fc5f20f0477b2f95871529cfdc564d4d65d04c480b15a2d2e63b14985abc","decoded_bytes":17272688},"index.wasm":{"url":"startup/cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2.br","bytes":6902599,"sha256":"cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2","decoded_bytes":39514754}},"worker":"decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"};
+    const assets = {"files":{"index.pck":{"url":"startup/0768eedc63c7950dd0f76268b9da4510a74bf1125d1c56a9fa1c345289c8cd30.br","bytes":12155667,"sha256":"0768eedc63c7950dd0f76268b9da4510a74bf1125d1c56a9fa1c345289c8cd30","decoded_bytes":17279664},"index.wasm":{"url":"startup/cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2.br","bytes":6902599,"sha256":"cdb9288f9e01d56f3a6643b68436eb0f9016d77bb7cad6f4ee007b47bbb8ecc2","decoded_bytes":39514754}},"worker":"decoder-1f3f5cb2ddf05d6b/worker-346e8a1718212379.js"};
     const originalFetch = window.fetch.bind(window);
     const pending = new Map();
     let worker = null, nextId = 1;
@@ -471,9 +471,9 @@ body {
 
 </script>
 <script id="catiators-startup" type="application/x-catiators-startup">
-const GODOT_CONFIG = {"args": [], "canvasResizePolicy": 2, "emscriptenPoolSize": 8, "ensureCrossOriginIsolationHeaders": true, "executable": "index", "experimentalVK": false, "fileSizes": {"index.pck": 17272688, "index.wasm": 39514754}, "focusCanvas": true, "gdextensionLibs": [], "godotPoolSize": 4};
+const GODOT_CONFIG = {"args": [], "canvasResizePolicy": 2, "emscriptenPoolSize": 8, "ensureCrossOriginIsolationHeaders": true, "executable": "index", "experimentalVK": false, "fileSizes": {"index.pck": 17279664, "index.wasm": 39514754}, "focusCanvas": true, "gdextensionLibs": [], "godotPoolSize": 4};
 const GODOT_THREADS_ENABLED = false;
-const GAME_PACK_URL = "index.pck?v=c9cf93b5e798e74f3f168fa0e08c499a124d0ffbc13a6df5b8d86644942675d0";
+const GAME_PACK_URL = "index.pck?v=02d0700010f92652f9af46c7c3a530f6959a4fdbcb56178d5c9484e7b63fd711";
 GODOT_CONFIG.fileSizes[GAME_PACK_URL] = GODOT_CONFIG.fileSizes["index.pck"];
 window.catiatorsDiagnostics.prepare(GODOT_CONFIG);
 const engine = new Engine(GODOT_CONFIG);
@@ -659,7 +659,7 @@ window.catiatorsDiagnostics.stage("feature_missing");
 /* Local recovery breadcrumbs; opt-in counters share through the consent-gated recorder. */
 (() => {
     "use strict";
-    const build = {"release": "catiators@244ff4ed5337f97d990404e2d6c6e668cce3f2b2", "pack_bytes": 17272688};
+    const build = {"release": "catiators@bc75c9e60e57174b8bc8c9360013531c9b60c25b", "pack_bytes": 17279664};
     const query = new URLSearchParams(location.search);
     const enabled = query.get("diagnostics") === "1";
     const recovery = query.get("diagnostics") === "read";
