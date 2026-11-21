@@ -1,23 +1,23 @@
 {
   "schema": 1,
-  "source_pack_sha256": "ac9add98ec72df950f475fd0c6c1b4526af221a693c571d055d96b4b68900af0",
-  "startup_pack_bytes": 16930624,
-  "startup_pack_gzip_bytes": 12558992,
+  "source_pack_sha256": "e639cee28c2985dd8ac51dc39b597b4aa3102f6f4554abd1a181ebe858c73517",
+  "startup_pack_bytes": 16941680,
+  "startup_pack_gzip_bytes": 12565908,
   "required_assets": 260,
   "deferred_assets": 1781,
   "category_bytes": {
-    "other": 11906765,
+    "other": 11917818,
     "imported": 4487800
   },
-  "required_transfer_bytes": 19933978,
+  "required_transfer_bytes": 19940369,
   "budget_bytes": 20000000,
   "startup": {
     "files": {
       "index.pck": {
-        "url": "startup/ec80daca5b2cf33f03d8b0a26b6b36fe3efe2cf22e6bf566aa10277aa4f4c36d.br",
-        "bytes": 11927152,
-        "sha256": "ec80daca5b2cf33f03d8b0a26b6b36fe3efe2cf22e6bf566aa10277aa4f4c36d",
-        "decoded_bytes": 16930624
+        "url": "startup/dc14a9d1983c2aba54f26c66846f30b9f2801ff11e11b74c5a124bf0a2302c26.br",
+        "bytes": 11933543,
+        "sha256": "dc14a9d1983c2aba54f26c66846f30b9f2801ff11e11b74c5a124bf0a2302c26",
+        "decoded_bytes": 16941680
       },
       "index.wasm": {
         "url": "startup/ac3e5f2f60df0304447d3f73d3aa3a69b49132f8f33021f041ca6ab959d06070.br",

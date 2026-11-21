@@ -1,16 +1,16 @@
 {
   "source_repository": "nalfeo/Catiators",
-  "source_commit": "1a256d310da7238a41f8b8ed5b4c024a138ea4aa",
+  "source_commit": "c2ad6610fddc162607e32a75100cb81767d90366",
   "telemetry": {
     "environment": "playtest",
     "posthog": true,
-    "release": "catiators@1a256d310da7238a41f8b8ed5b4c024a138ea4aa",
+    "release": "catiators@c2ad6610fddc162607e32a75100cb81767d90366",
     "sentry": true
   },
-  "published_utc": "2026-11-19T22:55:45.132972+00:00",
-  "previous_public_commit": "ad610ec95c356a7db92b0e1e63d6eb81d7e0de03",
+  "published_utc": "2026-11-21T05:53:45.839100+00:00",
+  "previous_public_commit": "6775bb1966880f3d9946f74389b8ef446ebb2420",
   "build_origin": "local_windows",
   "source_ci_run": null,
   "source_ci_result": "not_run",
-  "source_validation": "Windows: 1065 fresh Python tests, formatting, bounded Blender 5.2.3, 268 Godot 4.7.2 suites (2565 tests), six seeded smoke scenarios, checked single-threaded Web export, and Chromium mobile picker, crest and first-wave checks. Offline exhaustive matrix deferred."
+  "source_validation": "Source c2ad6610 passed Windows delta gate 927fe397d66b4fda8236dd01743a1440; official export and loopback Chromium smoke passed"
 }
